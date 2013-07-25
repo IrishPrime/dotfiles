@@ -12,10 +12,12 @@ call vundle#rc()
 
 " GitHub repos
 Bundle 'gmarik/vundle'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'dag/vim-fish'
 "Bundle 'vim-scripts/CSApprox'
@@ -36,9 +38,9 @@ set backspace=indent,eol,start
 set cursorline
 set diffopt+=vertical
 set encoding=utf-8
-set fillchars=vert:│,fold:-,diff:-
+set fillchars+=vert:│,fold:-,diff:-
 set foldmethod=indent
-set guifont=DejaVu\ Sans\ Mono\ 11
+set guifont=DejaVu\ Sans\ Mono\ 12
 set guioptions-=m
 set guioptions-=r
 set guioptions-=T
@@ -56,7 +58,7 @@ set showmatch
 set noshowmode
 set smartcase
 "set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with Powerline
-set tabstop=3 softtabstop=3 shiftwidth=3 noexpandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set t_Co=256
 set wildmenu
 set wildignore=*.o,*.swp,*.class
@@ -105,22 +107,69 @@ if has("autocmd")
 	autocmd BufNewFile Makefile 0r $HOME/Templates/Makefile
 endif
 
+if has("cscope")
+	set cscopetag cscopeverbose
+
+	if has("quickfix")
+		set cscopequickfix=s-,c-,d-,i-,t-,e-
+	endif
+
+	cnoreabbrev <expr> csa
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs add"  : "csa")
+	cnoreabbrev <expr> csf
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs find" : "csf")
+	cnoreabbrev <expr> csk
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs kill" : "csk")
+	cnoreabbrev <expr> csr
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs reset" : "csr")
+	cnoreabbrev <expr> css
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs show" : "css")
+	cnoreabbrev <expr> csh
+		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs help" : "csh")
+
+	"command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
+
+function! NeatFoldText()
+	let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+	let lines_count = v:foldend - v:foldstart + 1
+	let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+	let foldchar = matchstr(&fillchars, 'fold:\zs.')
+	let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+	let foldtextend = lines_count_text . repeat(foldchar, 8)
+	let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+	return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
+
 " GetLatestVimScripts options
 let g:GetLatestVimScripts_allowautoinstall=1
 
-" Keybind to edit vimrc
+" Mapping to edit vimrc
 nmap <Leader>v :tabedit $MYVIMRC<CR>
 
-" Keybinds to make the global register less annoying
+" Mappings to make the global register less annoying
 map <Leader>p :set paste<CR>"+]p:set nopaste<CR>
 map <Leader>P :set paste<CR>"+]P:set nopaste<CR>
 map <Leader>y "+y
 map <Leader>Y "+Y
 
+" Mappings and commands for dates/times
+imap <Leader>ymd <C-R>=strftime("%Y.%m.%d")<CR>
+imap <Leader>mdy <C-R>=strftime("%m.%d.%Y")<CR>
+imap <Leader>ndy <C-R>=strftime("%b %d, %Y")<CR>
+imap <Leader>hms <C-R>=strftime("%T")<CR>
+imap <Leader>ynd <C-R>=strftime("%Y %b %d")<CR>
+com! YMD :norm! i<C-R>=strftime("%Y.%m.%d")<CR>
+com! MDY :norm! i<C-R>=strftime("%m.%d.%Y")<CR>
+com! NDY :norm! i<C-R>=strftime("%b %d, %Y")<CR>
+com! HMS :norm! i<C-R>=strftime("%T")<CR>
+com! YND :norm! i<C-R>=strftime("%Y %b %d")<CR>
+
 " Open a Quickfix window for the last search.
 nnoremap <silent> <Leader>q :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-" Keybind to toggle the toolbar and menu in gVim
+" Mapping to toggle the toolbar and menu in gVim
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 	\set guioptions-=T <Bar>
 	\set guioptions-=m <Bar>
@@ -129,22 +178,22 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 	\set guioptions+=m <Bar>
 \endif<CR>
 
-" Keybind to toggle the NERDTree file browser and NERDTree options
+" Mapping to toggle the NERDTree file browser and NERDTree options
 map <F3> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1
 
-" Keybind to toggle Tagbar tag browser
+" Mapping to toggle Tagbar tag browser
 map <F4> :TagbarToggle<CR>
 
-" Keybind to switch between .c and .h files
+" Mapping to switch between .c and .h files
 map <F5> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
 
-" Keybind to toggle spell checking
+" Mapping to toggle spell checking
 map <F7> :set spell!<CR>
 
-" Keybind to show syntax item under cursor
+" Mapping to show syntax item under cursor
 map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
