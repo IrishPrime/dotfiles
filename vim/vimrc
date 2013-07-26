@@ -50,7 +50,7 @@ set ignorecase
 set incsearch
 set laststatus=2
 set linebreak
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:→\ ,eol:¬
 set nohlsearch
 set number
 set showcmd
@@ -205,5 +205,9 @@ let g:notes_title_sync = 'rename_file'
 
 " Powerline options
 set rtp+=$HOME/.local/lib/python3.3/site-packages/powerline/bindings/vim
+
+" Syntastic options
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '»'
 
 color irish
