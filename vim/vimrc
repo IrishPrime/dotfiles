@@ -61,7 +61,7 @@ set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set t_Co=256
 set wildmenu
-set wildignore=*.o,*.swp,*.class
+set wildignore=*.swp,*.class,*.o,*.pyc
 set wildmode=list:longest,full
 set wrap
 
