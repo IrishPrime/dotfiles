@@ -181,9 +181,10 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 
 " Mapping to toggle the NERDTree file browser and NERDTree options
 map <F3> :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-let NERDChristmasTree=1
-let NERDTreeHijackNetrw=1
+let NERDTreeShowBookmarks = 1
+let NERDChristmasTree = 1
+let NERDTreeHijackNetrw = 1
+let NERDTreeIgnore = ['\.pyc$']
 
 " Mapping to toggle Tagbar tag browser
 map <F4> :TagbarToggle<CR>
