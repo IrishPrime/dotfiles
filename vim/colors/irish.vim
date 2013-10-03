@@ -1,11 +1,10 @@
 " Irish's Color Scheme
 "
 " Author:  Michael O'Neill <irish.dot@gmail.com>
-" Version: 0.6
-
-set background=dark
+" Version: 0.7
 
 hi clear
+set background=dark
 if exists("syntax_on")
 	syntax reset
 endif
@@ -22,6 +21,8 @@ hi DiffAdd      guibg=#002B36
 hi DiffChange   guibg=#0F0F0F
 hi DiffDelete   guibg=#586E75
 hi DiffText     guibg=#112233
+hi DiffAdded    guifg=#30FF30 ctermfg=83
+hi DiffRemoved  guifg=#FF0000
 
 " Search
 hi Search       guifg=#000000 guibg=#FF8900 gui=none ctermfg=202 ctermbg=0

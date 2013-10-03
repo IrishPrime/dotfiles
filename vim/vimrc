@@ -13,13 +13,14 @@ call vundle#rc()
 " GitHub repos
 Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'dag/vim-fish'
+Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'majutsushi/tagbar'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'dag/vim-fish'
 "Bundle 'vim-scripts/CSApprox'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
@@ -61,7 +62,7 @@ set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set t_Co=256
 set wildmenu
-set wildignore=*.o,*.swp,*.class
+set wildignore=*.swp,*.class,*.o,*.pyc
 set wildmode=list:longest,full
 set wrap
 
@@ -180,9 +181,10 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 
 " Mapping to toggle the NERDTree file browser and NERDTree options
 map <F3> :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-let NERDChristmasTree=1
-let NERDTreeHijackNetrw=1
+let NERDTreeShowBookmarks = 1
+let NERDChristmasTree = 1
+let NERDTreeHijackNetrw = 1
+let NERDTreeIgnore = ['\.pyc$']
 
 " Mapping to toggle Tagbar tag browser
 map <F4> :TagbarToggle<CR>
