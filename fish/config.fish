@@ -22,4 +22,5 @@ set -x LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 set -x LESS_TERMCAP_ue \e'[0m'           # end underline
 set -x LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
-set -U fish_user_paths ~/.local/bin /sbin
+set -U fish_user_paths /sbin /usr/bin/core_perl /usr/bin/vendor_perl /usr/local/bin /usr/local/sbin ~/.local/bin
+set fish_greeting ""
