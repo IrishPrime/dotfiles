@@ -23,4 +23,4 @@ set -x LESS_TERMCAP_ue \e'[0m'           # end underline
 set -x LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 set fish_greeting
-set -U fish_user_paths ~/.local/bin /sbin
+set -U fish_user_paths /sbin /usr/bin/core_perl /usr/bin/vendor_perl /usr/local/bin /usr/local/sbin ~/.local/bin
