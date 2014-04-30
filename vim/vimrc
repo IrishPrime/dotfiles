@@ -5,14 +5,15 @@ if &shell =~# 'fish$'
 	set shell=sh
 endif
 
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " GitHub repos
 Bundle 'gmarik/vundle'
+Bundle 'bling/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'dag/vim-fish'
 Bundle 'gorodinskiy/vim-coloresque'
 Bundle 'majutsushi/tagbar'
@@ -30,7 +31,6 @@ Bundle 'hexHighlight.vim'
 Bundle 'hgrev'
 Bundle 'matchit.zip'
 Bundle 'netrw.vim'
-Bundle 'vcscommand.vim'
 
 set autochdir
 set autowrite
@@ -58,11 +58,12 @@ set showcmd
 set showmatch
 set noshowmode
 set smartcase
-"set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with Powerline
+"set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with Airline
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+set tags=tags;/
 set t_Co=256
 set wildmenu
-set wildignore=*.swp,*.class,*.o,*.pyc
+set wildignore=*.o,*.swp,*.class,*.pyc
 set wildmode=list:longest,full
 set wrap
 
@@ -149,6 +150,12 @@ let g:GetLatestVimScripts_allowautoinstall=1
 " Mapping to edit vimrc
 nmap <Leader>v :tabedit $MYVIMRC<CR>
 
+" Mappings to navigate my C style
+:map [[ ?{<CR>w99[{
+:map ][ /}<CR>b99]}
+:map ]] j0[[%/{<CR>
+:map [] k$][%?}<CR>
+
 " Mappings to make the global register less annoying
 map <Leader>p :set paste<CR>"+]p:set nopaste<CR>
 map <Leader>P :set paste<CR>"+]P:set nopaste<CR>
@@ -205,11 +212,26 @@ let g:notes_directories = ['~/Documents/Notes']
 let g:notes_suffix = '.txt'
 let g:notes_title_sync = 'rename_file'
 
-" Powerline options
-set rtp+=$HOME/.local/lib/python3.3/site-packages/powerline/bindings/vim
+" Airline options
+let g:airline_powerline_fonts = 1
+let g:airline_theme = "solarized"
+let g:airline#extensions#syntastic#enabled = 1
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 " Syntastic options
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '»'
+let g:syntastic_check_on_wq = 0
 
-color irish
+let g:solarized_termtrans = 1
+color solarized
