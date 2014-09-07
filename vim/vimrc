@@ -6,11 +6,11 @@ if &shell =~# 'fish$'
 endif
 
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " GitHub repos
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 Bundle 'bling/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/vim-tomorrow-theme'
@@ -22,11 +22,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
-"Bundle 'vim-scripts/CSApprox'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-notes'
 " Vim-Scripts repos
-"Bundle 'colorsupport.vim'
 Bundle 'hexHighlight.vim'
 Bundle 'hgrev'
 Bundle 'matchit.zip'
@@ -157,8 +155,8 @@ nmap <Leader>v :tabedit $MYVIMRC<CR>
 :map [] k$][%?}<CR>
 
 " Mappings to make the global register less annoying
-map <Leader>p :set paste<CR>"+]p:set nopaste<CR>
-map <Leader>P :set paste<CR>"+]P:set nopaste<CR>
+map <Leader>p :set paste<CR>"+]p<Esc>:set nopaste<CR>
+map <Leader>P :set paste<CR>"+]P<Esc>:set nopaste<CR>
 map <Leader>y "+y
 map <Leader>Y "+Y
 
