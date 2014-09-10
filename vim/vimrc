@@ -169,10 +169,17 @@ nmap <Leader>v :tabedit $MYVIMRC<CR>
 :map [] k$][%?}<CR>
 
 " Mappings to make the global register less annoying
-map <Leader>p :set paste<CR>"+]p<Esc>:set nopaste<CR>
-map <Leader>P :set paste<CR>"+]P<Esc>:set nopaste<CR>
-map <Leader>y "+y
-map <Leader>Y "+Y
+if has("clipboard")
+	map <Leader>p :set paste<CR>"+]p<Esc>:set nopaste<CR>
+	map <Leader>P :set paste<CR>"+]P<Esc>:set nopaste<CR>
+	map <Leader>y "+y
+	map <Leader>Y "+Y
+else
+	map <Leader>p :set paste<CR>:r !xsel -ob<Esc>:set nopaste<CR>
+	map <Leader>P :set paste<CR>:-1r !xsel -ob<Esc>:set nopaste<CR>
+	map <Leader>y :w !xsel -ib<CR><CR>
+	map <Leader>Y <S-v>:w !xsel -ib<CR><CR>
+endif
 
 " Mappings and commands for dates/times
 imap <Leader>ymd <C-R>=strftime("%Y.%m.%d")<CR>
