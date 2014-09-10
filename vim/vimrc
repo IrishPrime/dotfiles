@@ -193,8 +193,12 @@ com! NDY :norm! i<C-R>=strftime("%b %d, %Y")<CR>
 com! HMS :norm! i<C-R>=strftime("%T")<CR>
 com! YND :norm! i<C-R>=strftime("%Y %b %d")<CR>
 
-" Open a Quickfix window for the last search.
+" Mapping to open a Quickfix window for the last search.
 nnoremap <silent> <Leader>q :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Mapping to play recordings on a visual range
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
 
 " Mapping to toggle the toolbar and menu in gVim
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
