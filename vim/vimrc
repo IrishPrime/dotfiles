@@ -7,28 +7,29 @@ endif
 
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 " GitHub repos
-Bundle 'gmarik/Vundle.vim'
-Bundle 'bling/vim-airline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'dag/vim-fish'
-Bundle 'gorodinskiy/vim-coloresque'
-Bundle 'majutsushi/tagbar'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-notes'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'dag/vim-fish'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'majutsushi/tagbar'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+Plugin 'IrishPrime/WhiteWash.vim'
 " Vim-Scripts repos
-Bundle 'hexHighlight.vim'
-Bundle 'hgrev'
-Bundle 'matchit.zip'
-Bundle 'netrw.vim'
+Plugin 'hexHighlight.vim'
+Plugin 'matchit.zip'
+Plugin 'netrw.vim'
+
+call vundle#end()
 
 set autochdir
 set autowrite
