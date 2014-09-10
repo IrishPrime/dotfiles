@@ -129,7 +129,19 @@ if has("cscope")
 	cnoreabbrev <expr> csh
 		\ ((getcmdtype() == ":" && getcmdpos() <= 4)? "cs help" : "csh")
 
-	"command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+	"command -nargs=0 CScope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+
+	" Automatically load CScope
+	function! LoadCscope()
+		let db = findfile("cscope.out", ".;")
+		if (!empty(db))
+			let path = strpart(db, 0, match(db, "/cscope.out$"))
+			set nocscopeverbose " suppress 'duplicate connection' error
+			exe "cs add " . db . " " . path
+			set cscopeverbose
+		endif
+	endfunction
+	au BufEnter /* call LoadCscope()
 endif
 
 function! NeatFoldText()
