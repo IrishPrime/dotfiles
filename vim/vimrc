@@ -66,6 +66,7 @@ set wildignore=*.o,*.swp,*.class,*.pyc
 set wildmode=list:longest,full
 set wrap
 
+" Mouse support, just in case
 if has("mouse")
 	set mouse=a
 endif
