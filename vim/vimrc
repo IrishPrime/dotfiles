@@ -238,7 +238,10 @@ let g:notes_title_sync = 'rename_file'
 " Airline options
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "solarized"
+let g:airline#extensions#quickfix#location_text = 'Location'
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
