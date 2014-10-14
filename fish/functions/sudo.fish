@@ -1,3 +1,7 @@
 function sudo
-	command sudo -E $argv
+	if test "$argv" = !!
+		eval command sudo $history[1]
+	else
+		command sudo -E $argv
+	end
 end
