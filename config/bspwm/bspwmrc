@@ -22,18 +22,18 @@ bspc monitor --reset-desktops $(echo -e '\uf0ac') \
 	$(echo -e '\uf1fc') \
 	$(echo -e '\uf1c0') \
 	$(echo -e '\uf085')
-#bspc monitor -d $(echo '\uf109') $(echo '\uf121') $(echo '\uf120') $(echo '\uf07c') $(echo '\uf0ac') $(echo '\uf0c3')  $(echo '\uf141') $(echo '\uf001')
 
 bspc rule --add Chromium desktop=^1 border=off
 bspc rule --add Firefox desktop=^1 border=off
-bspc rule --add Gimp desktop=^8 follow=on floating=on
 bspc rule --add Google-chrome desktop=^1 border=off
-bspc rule --add Gvim desktop=DVI-I-1:^3
+bspc rule --add Gimp desktop=^8 follow=on floating=on
+bspc rule --add Gvim desktop=^3
 bspc rule --add Pidgin desktop=^4
 bspc rule --add Screenkey manage=off
 bspc rule --add VirtualBox desktop=^7
 bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd desktop=^1 floating=on # Hangouts
 bspc rule --add hipchat desktop=^4
+bspc rule --add libreoffice desktop=^6
 bspc rule --add mpv floating=on
 bspc rule --add play.google.com__music_listen desktop=^0 border=off
 bspc rule --add rdesktop manage=on border=off pseudo_tiled=on
