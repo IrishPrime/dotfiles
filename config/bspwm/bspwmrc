@@ -9,8 +9,8 @@ bspc config borderless_monocle    true
 bspc config focus_by_distance     true
 bspc config focus_follows_pointer true
 bspc config gapless_monocle       true
-bspc config focused_border_color '#268BD2'
-bspc config urgent_border_color  '#DC322F'
+bspc config focused_border_color  '#268BD2'
+bspc config urgent_border_color   '#DC322F'
 
 bspc monitor --reset-desktops $(echo -e '\uf0ac') \
 	$(echo -e '\uf120') \
