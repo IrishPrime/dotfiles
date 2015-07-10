@@ -1,0 +1,142 @@
+# Config {{{
+# Reload sxhkd configuration
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Quit bspwm
+super + alt + Escape
+	pkill -x panel; bspc quit
+
+# Reload or quit bspwm
+#super + alt + {_,shift + }Escape
+#	pkill -x panel; \
+#	{bspc query -T > "$BSPWM_TREE"; \
+#		bspc query -H > "$BSPWM_HISTORY"; \
+#			bspc query -S > "$BSPWM_STACK"; \
+#			bspc quit, \
+#	bspc quit 1}
+
+# Modify window gap
+super + {minus,equal}
+	bspc config -d focused window_gap (math (bspc config -d focused window_gap) {-,+} 2)
+# }}}
+
+# Desktop {{{
+super + t
+	bspc desktop --layout next
+
+super + u
+	bspc desktop --focus next.urgent; \
+	bspc window --focus next.urgent
+
+super + b
+	bspc desktop --balance
+
+super + q
+	bspc desktop --equalize
+
+super + {comma,period}
+	bspc desktop --circulate {backward,forward}
+
+super + ctrl + {comma,period}
+	bspc desktop --rotate {270,90}
+
+super + {z,v}
+	bspc desktop --flip {horizontal,vertical}
+
+super + bracket{left,right}
+	bspc desktop --focus {prev,next}
+
+super + ctrl + {_,shift + }space
+	bspc {window --presel cancel,desktop --cancel-presel}
+
+super + {_,shift + }{1-9,0}
+	bspc {desktop --focus,window --to-desktop} \^{1-9,10}
+# }}}
+
+# Window {{{
+super + shift + c
+	bspc window --close
+
+super + {f,s,d}
+	bspc window --toggle {floating,fullscreen,pseudo_tiled}
+
+super + {grave,Tab}
+	bspc {desktop,window} --focus last
+
+super + apostrophe
+	bspc window --swap last
+
+super + {o,i}
+	bspc control --record-history off; \
+	bspc window {older,newer} -f; \
+	bspc control --record-history on
+
+super + m
+	bspc window --swap biggest
+
+super + y
+	bspc window --to-window last.manual
+
+super + {_,shift + }{h,j,k,l}
+	bspc window --{focus,swap} {left,down,up,right}
+
+super + {n,p}
+	bspc window --focus {next,prev}
+
+super + ctrl + {h,j,k,l}
+	bspc window --presel {left,down,up,right}
+
+super + alt + {h,j,k,l}
+	bspc window --edge {left -10,down +10,up -10,right +10}
+
+super + alt + shift + {h,j,k,l}
+	bspc window --edge {right -10,up +10,down -10,left +10}
+
+super + ctrl + {1-9}
+	bspc window --ratio 0.{1-9}
+# }}}
+
+# Pointer {{{
+~button1
+	bspc pointer --grab focus
+
+super + button{1-3}
+	bspc pointer --grab {move,resize_side,resize_corner}
+
+super + !button{1-3}
+	bspc pointer --track %i %i
+
+super + @button{1-3}
+	bspc pointer --ungrab
+# }}}
+
+# Launchers {{{
+super + space
+	dmenu_run -i -fn "DejaVuSansMono-11" -p "»" -h "24"
+
+super + Return
+	urxvtc
+
+super + w
+	chromium
+
+super + e
+	thunar
+
+ctrl + alt + Delete
+	urxvtc -e htop
+# }}}
+
+# Fn keys {{{
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	amixer set Master 5%{+,-}
+
+XF86AudioMute
+	amixer sset Master toggle
+
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	light -{A,U} 5
+# }}}
+
+# vim: foldmethod=marker
