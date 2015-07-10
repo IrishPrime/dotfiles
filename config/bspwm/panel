@@ -5,7 +5,7 @@ PANEL_HEIGHT=24
 PANEL_FONT="DejaVuSansMono:size=11"
 ICON_FONT="FontAwesome:size=11"
 ICON_FONT2="fontcustom:size=11"
-source bspwm_panel_colors
+source colors
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
 	printf "%s\n" "The panel is already running." >&2
@@ -85,9 +85,15 @@ echo -e P'\uf011' > $PANEL_FIFO &
 
 # music controls
 while true; do
+	if [ ! -e ~/.config/mpd/pid ]; then
+		echo -e 'R%{T3}%{A:mpd; mpc play:}\uf198 %{A}%{T-}'
+		sleep 1
+		continue
+	fi
+
 	SONG_NAME=$(mpc | head -n1)
 	if [[ -n $(mpc status | grep paused) ]]; then
-		echo -e "R%{T3}%{A:mpc prev:}\uf19c%{A} %{A:mpc play:}\uf198%{A}  %{A:mpc next:}\uf17c%{A}%{T1} $SONG_NAME"
+		echo -e "R%{T3}%{A:mpc prev:}\uf19c%{A} %{A:mpc play:}\uf198%{A} %{A:mpc next:}\uf17c%{A}%{T1} $SONG_NAME"
 	else
 		echo -e "R%{T3}%{A:mpc prev:}\uf19c%{A} %{A:mpc pause:}\uf191%{A} %{A:mpc next:}\uf17c%{A}%{T1} $SONG_NAME"
 	fi
@@ -95,7 +101,6 @@ while true; do
 	sleep 1
 done > $PANEL_FIFO &
 
-
-bspwm_panel_bar < ${PANEL_FIFO} | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT" -f "$ICON_FONT" -f "$ICON_FONT2" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" -u 2 | bash &
+panel_bar < ${PANEL_FIFO} | lemonbar -g x${PANEL_HEIGHT} -f "${PANEL_FONT}" -f "${ICON_FONT}" -f "${ICON_FONT2}" -F "${COLOR_FOREGROUND}" -B "${COLOR_BACKGROUND}" -u 2 | bash &
 
 wait

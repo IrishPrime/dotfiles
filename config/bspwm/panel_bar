@@ -1,7 +1,7 @@
 #!/bin/bash
 # Panel for LemonBoy's bar
 
-source bspwm_panel_colors
+source colors
 
 NUM_MON=$(bspc query -M | wc -l)
 PADDING=" "
@@ -14,7 +14,7 @@ while read -r line; do
 			;;
 		R*)
 			# music info
-			music="%{B$COLOR_FOCUSED_OCCUPIED_BG}%{F$COLOR_FOCUSED_OCCUPIED_FG}$PADDING${line#?}$PADDING%{F-}%{B-}"
+			music="%{A3:mpd --kill:}%{B$COLOR_FOCUSED_OCCUPIED_BG}%{F$COLOR_FOCUSED_OCCUPIED_FG}$PADDING${line#?}$PADDING%{F-}%{B-}%{A}"
 			;;
 		C*)
 			# clock output
