@@ -2,10 +2,10 @@
 
 dropbox start &
 nitrogen --restore
-panel &
 setxkbmap -option ctrl:nocaps
 syndaemon -t -k -i 1 -d &
 urxvtd -q -f -o &
 xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
+panel &
