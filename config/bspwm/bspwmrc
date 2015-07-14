@@ -29,7 +29,6 @@ bspc rule --add Google-chrome desktop=^1 border=off
 bspc rule --add Gimp desktop=^8 follow=on floating=on
 bspc rule --add Gvim desktop=^3
 bspc rule --add Pidgin desktop=^4
-bspc rule --add Screenkey manage=off
 bspc rule --add VirtualBox desktop=^7
 bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd desktop=^1 floating=on # Hangouts
 bspc rule --add hipchat desktop=^4
