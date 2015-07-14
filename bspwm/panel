@@ -35,16 +35,12 @@ done > $PANEL_FIFO &
 
 # Battery
 while true; do
-	BATT_LEVEL=$(acpi -b | grep -o '...%' | sed 's/%//' | sed 's/ //')
+	BATT_LEVEL=$(acpi -b | grep -o '[[:digit:]]\+%' | cut -d'%' -f1)
 	if [ $BATT_LEVEL -ge 80 ]; then
 		echo -e 'B\uf116' $BATT_LEVEL%
-	fi
-
-	if [ $BATT_LEVEL -ge 30 -a $BATT_LEVEL -lt 80 ]; then
+	elif [ $BATT_LEVEL -ge 30 -a $BATT_LEVEL -lt 80 ]; then
 		echo -e 'B\uf117' $BATT_LEVEL%
-	fi
-
-	if [ $BATT_LEVEL -lt 30 ]; then
+	elif [ $BATT_LEVEL -lt 30 ]; then
 		echo -e 'B%{T3}\uf115%{T1}' $BATT_LEVEL%
 	fi
 
@@ -53,8 +49,8 @@ done > "$PANEL_FIFO" &
 
 # ALSA Volume
 while true; do
-	ALSA_VOLUME=$(amixer get Master | grep 'Mono: Playback' | grep -o '...%' | sed 's/\[//' | sed 's/%//' | sed 's/ //')
-	ALSA_STATE=$(amixer get Master | grep 'Mono: Playback' | grep -o '\[on]')
+	ALSA_VOLUME=$(amixer get Master | grep 'Mono: Playback' | grep -o '[[:digit:]]\+%' | cut -d'%' -f1)
+	ALSA_STATE=$(amixer get Master | grep 'Mono: Playback' | grep -o '\[on\]')
 
 	if [ $ALSA_STATE ]; then
 		if [ $ALSA_VOLUME -ge 50 ]; then
@@ -72,8 +68,8 @@ done > $PANEL_FIFO &
 
 # WiFi
 while true; do
-	WIFI_SSID=$(iw wlp2s0 link | grep 'SSID' | sed 's/SSID: //' | sed 's/\t//')
-	WIFI_SIGNAL=$(iw wlp2s0 link | grep 'signal' | sed 's/signal: //' | sed 's/ dBm//' | sed 's/\t//')
+	WIFI_SSID=$(iw wlp2s0 link | grep 'SSID' | cut -d' ' -f2)
+	WIFI_SIGNAL=$(iw wlp2s0 link | grep 'signal' | cut -d' ' -f2)
 	echo -e L'\uf1eb' $WIFI_SSID '|' $WIFI_SIGNAL
 	sleep 10
 done > $PANEL_FIFO &
