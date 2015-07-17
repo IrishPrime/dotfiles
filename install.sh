@@ -9,7 +9,7 @@ HELP="If run with no arguments, quietly attempt to install all files to the user
 -t <TARGET_PATH>\tPath to install to. Default: \${HOME}
 -a <ACTION>\t\tAction to take: -S|--stow|-R|--restow|-D|--delete. Default: --stow
 -n\t\t\tDo not actually make any filesystem changes.
--v <VERBOSITY>\t\tVerbosity level, 1..5. Default: 0
+-v <VERBOSITY>\t\tVerbosity level, 0..5. Default: 0
 -h\t\t\tShow this help.
 See Stow's documentation for more on actions."
 
