@@ -32,10 +32,13 @@ bspc rule --add Gimp desktop=^8 follow=on floating=on
 bspc rule --add Gvim desktop=^3
 bspc rule --add Pidgin desktop=^4
 bspc rule --add VirtualBox desktop=^7
-bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd desktop=^1 floating=on # Hangouts
+bspc rule --add virt-manager desktop=^7
+bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd desktop=^1 floating=on # Hangouts Extension
+bspc rule --add crx_knipolnnllmklapflnccelgolnpehhpl desktop=^4 # Hangouts App
+bspc rule --add messenger.com desktop=^4
 bspc rule --add hipchat desktop=^4
 bspc rule --add libreoffice desktop=^6
 bspc rule --add mpv floating=on
-bspc rule --add play.google.com__music_listen desktop=^0 border=off
+bspc rule --add play.google.com__music_listen desktop=^0
 bspc rule --add rdesktop manage=on border=off pseudo_tiled=on
 bspc rule --add xchat desktop=^4
