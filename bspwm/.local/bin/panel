@@ -5,6 +5,8 @@ PANEL_HEIGHT=24
 PANEL_FONT="DejaVuSansMono:size=11"
 ICON_FONT="FontAwesome:size=11"
 ICON_FONT2="fontcustom:size=11"
+WLAN_DEV="wlp2s0"
+
 source colors
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
@@ -68,8 +70,8 @@ done > $PANEL_FIFO &
 
 # WiFi
 while true; do
-	WIFI_SSID=$(iw wlp2s0 link | grep 'SSID' | cut -d' ' -f2)
-	WIFI_SIGNAL=$(iw wlp2s0 link | grep 'signal' | cut -d' ' -f2)
+	WIFI_SSID=$(iw ${WLAN_DEV} link | grep 'SSID' | cut -d' ' -f2)
+	WIFI_SIGNAL=$(iw ${WLAN_DEV} link | grep 'signal' | cut -d' ' -f2)
 	echo -e L'\uf1eb' $WIFI_SSID '|' $WIFI_SIGNAL
 	sleep 10
 done > $PANEL_FIFO &

@@ -9,39 +9,39 @@ PADDING=" "
 while read -r line; do
 	case $line in
 		D*)
-			# date output
+			# Date Output
 			date="$PADDING${line#?}$PADDING"
 			;;
 		R*)
-			# music info
+			# Music Info
 			music="%{A3:mpd --kill:}%{B$COLOR_FOCUSED_OCCUPIED_BG}%{F$COLOR_FOCUSED_OCCUPIED_FG}$PADDING${line#?}$PADDING%{F-}%{B-}%{A}"
 			;;
 		C*)
-			# clock output
+			# Clock Output
 			clock="$PADDING${line#?}$PADDING"
 			;;
 		B*)
-			# battery percent output
-			battery="%{A:bat.sh:}$PADDING${line#?}$PADDING%{A}"
+			# Battery Percent Output
+			battery="%{A:battery.sh:}$PADDING${line#?}$PADDING%{A}"
 			;;
 		T*)
 			# xtitle output
 			title="${line#?}$PADDING$PADDING"
 			;;
 		V*)
-			# alsa volume
+			# ALSA Volume
 			volume="$PADDING${line#?}$PADDING"
 			;;
 		L*)
-			# wifi link
+			# WiFi Link
 			wifi="$PADDING${line#?}$PADDING"
 			;;
 		P*)
-			# power
+			# Power
 			power="%{A2:poweroff:}%{A3:reboot:}$PADDING${line#?}$PADDING%{A}%{A}"
 			;;
 		W*)
-			# bspwm internal state
+			# bspwm Internal State
 			wm_infos=""
 			IFS=':'
 			set -- ${line#?}
