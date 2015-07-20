@@ -5,6 +5,7 @@ if &shell =~# 'fish$'
 	set shell=bash
 endif
 
+" Plugin Management {{{
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -32,7 +33,9 @@ Plugin 'matchit.zip'
 Plugin 'netrw.vim'
 
 call vundle#end()
+" }}}
 
+" Options {{{
 set autochdir
 set autowrite
 set background=dark
@@ -73,7 +76,9 @@ set wrap
 if has("mouse")
 	set mouse=a
 endif
+" }}}
 
+" Auto commands {{{
 if has("autocmd")
 	filetype plugin indent on
 
@@ -84,6 +89,7 @@ if has("autocmd")
 			\endif
 	endif
 
+	autocmd FileType vim setlocal keywordprg=:help
 	augroup vimrcEx
 		autocmd!
 		autocmd FileType vim setlocal textwidth=78
@@ -111,7 +117,9 @@ if has("autocmd")
 	autocmd BufNewFile *.*htm*  0r $HOME/Templates/XHTML.xhtml
 	autocmd BufNewFile Makefile 0r $HOME/Templates/Makefile
 endif
+" }}}
 
+" Cscope {{{
 if has("cscope")
 	set cscopetag cscopeverbose
 
@@ -146,7 +154,9 @@ if has("cscope")
 	endfunction
 	au BufEnter /* call LoadCscope()
 endif
+" }}}
 
+" Functions {{{
 function! NeatFoldText()
 	let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
 	let lines_count = v:foldend - v:foldstart + 1
@@ -158,20 +168,20 @@ function! NeatFoldText()
 	return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 set foldtext=NeatFoldText()
+" }}}
 
-" GetLatestVimScripts options
-let g:GetLatestVimScripts_allowautoinstall=1
-
+" Mappings {{{
 " Mapping to edit vimrc
 nmap <Leader>v :tabedit $MYVIMRC<CR>
 
-" Mappings to navigate my C style
+" Mappings to navigate my C style {{{
 :map [[ ?{<CR>w99[{
 :map ][ /}<CR>b99]}
 :map ]] j0[[%/{<CR>
 :map [] k$][%?}<CR>
+" }}}
 
-" Mappings to make the global register less annoying
+" Mappings to make the global register less annoying {{{
 if has("clipboard")
 	map <Leader>p :set paste<CR>"+]p<Esc>:set nopaste<CR>
 	map <Leader>P :set paste<CR>"+]P<Esc>:set nopaste<CR>
@@ -183,8 +193,9 @@ else
 	map <Leader>y :w !xsel -ib<CR><CR>
 	map <Leader>Y <S-v>:w !xsel -ib<CR><CR>
 endif
+" }}}
 
-" Mappings and commands for dates/times
+" Mappings and commands for dates/times {{{
 imap <Leader>ymd <C-R>=strftime("%Y.%m.%d")<CR>
 imap <Leader>mdy <C-R>=strftime("%m.%d.%Y")<CR>
 imap <Leader>ndy <C-R>=strftime("%b %d, %Y")<CR>
@@ -195,15 +206,19 @@ com! MDY :norm! i<C-R>=strftime("%m.%d.%Y")<CR>
 com! NDY :norm! i<C-R>=strftime("%b %d, %Y")<CR>
 com! HMS :norm! i<C-R>=strftime("%T")<CR>
 com! YND :norm! i<C-R>=strftime("%Y %b %d")<CR>
+" }}}
 
-" Mapping to open a Quickfix window for the last search.
+" Mapping to open a Quickfix window for the last search
 nnoremap <silent> <Leader>q :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Mapping to add FIXME, TODO, XXX lines in the current buffer to the Quickfix list
+nnoremap <Leader>f :vimgrep /FIXME\\|TODO\\|XXX/ %<CR>
 
 " Mapping to play recordings on a visual range
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
-" Mapping to toggle the toolbar and menu in gVim
+" Mapping to toggle the toolbar and menu in gVim {{{
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 	\set guioptions-=T <Bar>
 	\set guioptions-=m <Bar>
@@ -211,13 +226,15 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 	\set guioptions+=T <Bar>
 	\set guioptions+=m <Bar>
 \endif<CR>
+" }}}
 
-" Mapping to toggle the NERDTree file browser and NERDTree options
+" Mapping to toggle the NERDTree file browser and NERDTree options {{{
 map <F3> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks = 1
 let NERDChristmasTree = 1
 let NERDTreeHijackNetrw = 1
 let NERDTreeIgnore = ['\.pyc$']
+" }}}
 
 " Mapping to toggle Tagbar tag browser
 map <F4> :TagbarToggle<CR>
@@ -228,19 +245,21 @@ map <F5> :e %:p:s,.h$,.X123X,:s,.c$,.h,:s,.X123X$,.c,<CR>
 " Mapping to toggle spell checking
 map <F7> :set spell!<CR>
 
-" Mapping to show syntax item under cursor
+" Mapping to show syntax item under cursor {{{
 map <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
+" }}}
 
-" Notes.vim options
-let g:notes_directories = ['~/Documents/Notes']
-let g:notes_suffix = '.txt'
-let g:notes_title_sync = 'rename_file'
+" Plugin Options {{{
+" GetLatestVimScripts
+let g:GetLatestVimScripts_allowautoinstall=1
 
-" Airline options
+" Airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme = "solarized"
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -252,19 +271,43 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+" }}}
 
-" Syntastic options
+" CtrlP {{{
+let g:ctrlp_root_markers = ['cscope.out']
+let g:ctrlp_by_filename = 1
+let g:ctrlp_regexp = 1
+let g:ctrlp_open_multiple_files = '1rjv'
+" }}}
+
+" Notes.vim {{{
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_suffix = '.txt'
+let g:notes_title_sync = 'rename_file'
+" }}}
+
+" Syntastic {{{
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '»'
 let g:syntastic_check_on_wq = 0
+" }}}
 
-" Use The Silver Searcher if available
+" The Silver Searcher {{{
 if executable('ag')
+	" Use ag over grep
+	set grepprg=ag\ --nogroup\ --nocolor
+
 	" Use ag in CtrlP
 	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
 	" Skip caching since ag is so fast
 	let g:ctrlp_use_caching = 0
 endif
+" }}}
 
+" Colorscheme
 let g:solarized_termtrans = 1
 color solarized
+" }}}
+
+" vim: foldmethod=marker
