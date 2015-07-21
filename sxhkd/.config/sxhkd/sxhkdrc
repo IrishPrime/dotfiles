@@ -18,7 +18,12 @@ super + alt + Escape
 
 # Modify window gap
 super + {minus,equal}
-	bspc config -d focused window_gap (math (bspc config -d focused window_gap) {-,+} 2)
+	bspc config -d focused window_gap $(($(bspc config -d focused window_gap) {-,+} 2))
+# }}}
+
+# Monitor {{{
+super + ctrl + {n,p}
+	bspc monitor --focus {next,prev}
 # }}}
 
 # Desktop {{{
@@ -51,15 +56,15 @@ super + ctrl + {_,shift + }space
 	bspc {window --presel cancel,desktop --cancel-presel}
 
 super + {_,shift + }{1-9,0}
-	bspc {desktop --focus,window --to-desktop} \^{1-9,10}
+	bspc {desktop --focus,window --to-desktop} ^{1-9,10}
 # }}}
 
 # Window {{{
 super + shift + c
 	bspc window --close
 
-super + {f,s,d}
-	bspc window --toggle {floating,fullscreen,pseudo_tiled}
+super + {f,s,d,c,a,x}
+	bspc window --toggle {floating,fullscreen,pseudo_tiled,sticky,private,locked}
 
 super + {grave,Tab}
 	bspc {desktop,window} --focus last
@@ -81,8 +86,11 @@ super + y
 super + {_,shift + }{h,j,k,l}
 	bspc window --{focus,swap} {left,down,up,right}
 
-super + {n,p}
-	bspc window --focus {next,prev}
+super + {_,alt + }{n,p}
+	bspc window --{focus,to-monitor} {next,prev}
+
+super + ctrl + bracket{left,right}
+	bspc window --to-monitor {next,prev}
 
 super + ctrl + {h,j,k,l}
 	bspc window --presel {left,down,up,right}
@@ -126,14 +134,17 @@ super + e
 
 ctrl + alt + Delete
 	urxvtc -e htop
+
+super + slash
+	dm-tool lock
 # }}}
 
 # Fn keys {{{
 {XF86AudioRaiseVolume,XF86AudioLowerVolume}
-	amixer set Master 5%{+,-}
+	amixer -M set Master 5%{+,-}
 
 XF86AudioMute
-	amixer sset Master toggle
+	amixer set Master toggle
 
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
 	light -{A,U} 5
