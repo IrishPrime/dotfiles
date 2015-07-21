@@ -75,7 +75,7 @@ function fish_prompt
 	set_color -o $retc
 	echo -n ']'
 	set_color normal
-	
+
 	# ACPI Support
 	# Check if acpi exists
 	if not set -q __fish_nim_prompt_has_acpi
@@ -85,7 +85,7 @@ function fish_prompt
 			set -g __fish_nim_prompt_has_acpi '' # empty string
 		end
 	end
-		
+
 	if test -n $__fish_nim_prompt_has_acpi
 		if [ (acpi -a 2> /dev/null | grep off) ]
 			echo -n '─['
