@@ -124,16 +124,16 @@ super + space
 	dmenu_run -i -fn "DejaVuSansMono-11" -p "»" -h "24"
 
 super + Return
-	urxvtc
+	$TERMINAL
 
 super + w
-	chromium
+	$BROWSER
 
 super + e
-	thunar
+	$FILE_BROWSER
 
 ctrl + alt + Delete
-	urxvtc -e htop
+	$TERMINAL -e htop
 
 super + slash
 	dm-tool lock

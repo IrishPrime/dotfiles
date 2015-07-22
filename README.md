@@ -16,6 +16,19 @@ install all packages at once.
 If `stow` tries to install a file that already exists, it will fail. Remove or
 backup any existing files before installing.
 
+## Environment Variables
+
+The following environment variables are used in some `sxhkd` bindings and
+scripts. They should be set in `.profile` or similar to ensure all bindings
+work correctly.
+
+- `EDITOR`
+- `VISUAL`
+- `BROWSER`
+- `SXHKD_SHELL`
+- `TERMINAL`
+- `FILE_BROWSER`
+
 # Packages
 
 - `bash` - `.bashrc` and aliases.
