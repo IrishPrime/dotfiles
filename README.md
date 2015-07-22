@@ -45,3 +45,7 @@ work correctly.
 - `Templates` - Skeleton files for several programming languages.
 - `vim` - `.vimrc`.
 - `Xresources` - Terminal options and colorschemes.
+
+# Screenshot
+
+![screenshot](./screenshot.jpg)
