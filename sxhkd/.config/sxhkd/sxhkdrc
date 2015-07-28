@@ -56,7 +56,7 @@ super + ctrl + {_,shift + }space
 	bspc {window --presel cancel,desktop --cancel-presel}
 
 super + {_,shift + }{1-9,0}
-	bspc {desktop --focus,window --to-desktop} ^{1-9,10}
+	bspc {desktop --focus,window --to-desktop} focused:^{1-9,10}
 # }}}
 
 # Window {{{
@@ -112,9 +112,6 @@ super + ctrl + {1-9}
 super + button{1-3}
 	bspc pointer --grab {move,resize_side,resize_corner}
 
-super + !button{1-3}
-	bspc pointer --track %i %i
-
 super + @button{1-3}
 	bspc pointer --ungrab
 # }}}
@@ -139,15 +136,58 @@ super + slash
 	dm-tool lock
 # }}}
 
-# Fn keys {{{
+# Special keys {{{
 {XF86AudioRaiseVolume,XF86AudioLowerVolume}
 	amixer -M set Master 5%{+,-}
 
 XF86AudioMute
 	amixer set Master toggle
 
+{XF86AudioPrev,XF86AudioNext}
+	mpc {prev,next}
+
+XF86AudioPlay
+	mpc toggle; \
+	mpc-notification.sh
+
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
 	light -{A,U} 5
+
+XF86Battery
+	battery.sh
+
+XF86HomePage
+	$BROWSER
+
+XF86Search
+	$FILE_BROWSER
+
+XF86Mail
+	$MAIL_CLIENT
+
+XF86Calculator
+	$CALCULATOR
+
+XF86Launch5
+	$TERMINAL
+
+XF86Launch6
+	$VISUAL
+
+XF86Launch7
+	$IM_CLIENT
+
+XF86Launch8
+	$IRC_CLIENT
+
+XF86Launch9
+	$MUSIC_PLAYER
+
+XF86Favorites
+	$VIRTUALIZATION
+
+super + Print
+	scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
 # }}}
 
 # vim: foldmethod=marker

@@ -40,6 +40,12 @@ wishes to use without putting those preferences in version control.
 - `SXHKD_SHELL` - A shell through which to run `sxhkd` bindings. My bindings are
   currently compatibile with `bash`.
 - `TERMINAL` - Terminal emulator: `urxvtc`, `urxvt256c-mlc`, `termite`, `terminator`, etc.
+- `MAIL_CLIENT` - Mail reader: `thunderbird`, `mutt`, etc.
+- `CALCULATOR` - Calculator: `gnome-calculator`, `calc`, etc.
+- `IM_CLIENT` - Chat program: `pidgin`, `google-hangouts.sh`, `facebook-messenger.sh`, etc.
+- `IRC_CLIENT` - IRC client: `irssi`, `hexchat`, `xchat`, etc..
+- `MUSIC_PLAYER` - Music player: `google-music.sh`, `ncmpcpp`, `cmus`, `banshee`, etc.
+- `VIRTUALIZATION` - Virtualization hypervisor: `virt-manager`, `VirtualBox`, etc.
 
 # Packages
 
