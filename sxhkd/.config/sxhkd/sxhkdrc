@@ -129,9 +129,6 @@ super + w
 super + e
 	$FILE_BROWSER
 
-super + v
-	$VISUAL
-
 ctrl + alt + Delete
 	$TERMINAL -e htop
 
