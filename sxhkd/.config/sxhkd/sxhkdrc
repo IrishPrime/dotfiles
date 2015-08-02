@@ -63,7 +63,7 @@ super + {_,shift + }{1-9,0}
 super + shift + c
 	bspc window --close
 
-super + {f,s,d,c,a,x}
+super + {f,s,d,x,a,c}
 	bspc window --toggle {floating,fullscreen,pseudo_tiled,sticky,private,locked}
 
 super + {grave,Tab}
