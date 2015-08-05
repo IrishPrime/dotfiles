@@ -2,18 +2,27 @@
 
 bspc config border_width          2
 bspc config window_gap            8
-
 bspc config split_ratio           0.50
 bspc config auto_cancel           true
 bspc config borderless_monocle    true
 bspc config focus_by_distance     true
 bspc config focus_follows_pointer true
 bspc config gapless_monocle       true
-bspc config focused_border_color  '#268BD2'
-bspc config urgent_border_color   '#DC322F'
 
+# Colors
+bspc config focused_border_color         '#268BD2'
+bspc config urgent_border_color          '#DC322F'
+bspc config focused_locked_border_color  '#2AA198'
+bspc config active_locked_border_color   '#657B83'
+bspc config focused_sticky_border_color  '#859900'
+bspc config active_sticky_border_color   '#93A1A1'
+bspc config focused_private_border_color '#6C71C4'
+bspc config active_private_border_color  '#839496'
+
+# Desktop names
 for MONITOR in $(bspc query -M); do
-	bspc monitor ${MONITOR} --reset-desktops $(echo -e '\uf0ac') \
+	bspc monitor ${MONITOR} --reset-desktops \
+		$(echo -e '\uf0ac') \
 		$(echo -e '\uf120') \
 		$(echo -e '\uf040') \
 		$(echo -e '\uf086') \
@@ -25,6 +34,7 @@ for MONITOR in $(bspc query -M); do
 		$(echo -e '\uf085')
 done
 
+# Rules
 bspc rule --add Chromium desktop=^1 border=off
 bspc rule --add Firefox desktop=^1 border=off
 bspc rule --add Google-chrome desktop=^1 border=off
@@ -34,11 +44,12 @@ bspc rule --add Pidgin desktop=^4
 bspc rule --add VirtualBox desktop=^7
 bspc rule --add virt-manager desktop=^7
 bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd desktop=^1 floating=on # Hangouts Extension
-bspc rule --add crx_knipolnnllmklapflnccelgolnpehhpl desktop=^4 # Hangouts App
-bspc rule --add messenger.com desktop=^4
+bspc rule --add crx_knipolnnllmklapflnccelgolnpehhpl desktop=^4 border=on # Hangouts App
+bspc rule --add messenger.com desktop=^4 border=on
 bspc rule --add hipchat desktop=^4
 bspc rule --add libreoffice desktop=^6
 bspc rule --add mpv floating=on
-bspc rule --add play.google.com__music_listen desktop=^0
+bspc rule --add play.google.com__music desktop=^10 border=on
 bspc rule --add rdesktop manage=on border=off pseudo_tiled=on
+bspc rule --add hexchat desktop=^4
 bspc rule --add xchat desktop=^4

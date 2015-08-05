@@ -21,17 +21,17 @@ mkfifo "$PANEL_FIFO"
 
 bspc config top_padding $PANEL_HEIGHT
 bspc control --subscribe > "$PANEL_FIFO" &
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
+xtitle -sf "T%s" > "$PANEL_FIFO" &
 
 # Clock
 while true; do
-	echo -e 'C\uf017' $(date +"%H:%M");
+	echo -e "C\uf017" $(date +"%H:%M");
 	sleep 5;
 done > "$PANEL_FIFO" &
 
 # Date
 while true; do
-	echo -e 'D\uf073' $(date +'%b %d')
+	echo -e "D\uf073" $(date +'%b %d')
 	sleep 5
 done > $PANEL_FIFO &
 
@@ -56,11 +56,11 @@ while true; do
 
 	if [ $ALSA_STATE ]; then
 		if [ $ALSA_VOLUME -ge 50 ]; then
-			echo -e 'V\uf028' $ALSA_VOLUME
-		elif [ $ALSA_VOLUME -gt 0 -a $ALSA_VOLUME -lt 50 ]; then
-			echo -e 'V\uf027' $ALSA_VOLUME
+			echo -e "V\uf028 ${ALSA_VOLUME}"
+		elif [ $ALSA_VOLUME -gt 0 -a ${ALSA_VOLUME} -lt 50 ]; then
+			echo -e "V\uf027 ${ALSA_VOLUME}"
 		elif [ $ALSA_VOLUME -eq 0 ]; then
-			echo -e 'V\uf026' $ALSA_VOLUME
+			echo -e "V\uf026 ${ALSA_VOLUME}"
 		fi
 	else
 		echo -e "V%{F${red}}\uf026 MM%{F-}"
@@ -70,19 +70,19 @@ done > $PANEL_FIFO &
 
 # WiFi
 while true; do
-	WIFI_SSID=$(iw ${WLAN_DEV} link | grep 'SSID' | cut -d' ' -f2)
-	WIFI_SIGNAL=$(iw ${WLAN_DEV} link | grep 'signal' | cut -d' ' -f2)
-	echo -e L'\uf1eb' $WIFI_SSID '|' $WIFI_SIGNAL
+	WIFI_SSID=$(iw ${WLAN_DEV} link | grep '^\s\+SSID:' | cut -d' ' -f2)
+	WIFI_SIGNAL=$(iw ${WLAN_DEV} link | grep '^\s\+signal:' | cut -d' ' -f2)
+	echo -e "L\uf1eb ${WIFI_SSID} | ${WIFI_SIGNAL}"
 	sleep 10
 done > $PANEL_FIFO &
 
 # Power
-echo -e 'P\uf011' > $PANEL_FIFO &
+echo -e "P\uf011" > $PANEL_FIFO &
 
 # Music Controls
 while true; do
 	if [ ! -e ~/.config/mpd/pid ]; then
-		echo -e 'R%{T3}%{A:mpd; mpc play:}\uf198 %{A}%{T-}'
+		echo -e "R%{T3}%{A:mpd; mpc play:}\uf198 %{A}%{T-}"
 		sleep 1
 		continue
 	fi
