@@ -24,7 +24,7 @@ for MONITOR in $(bspc query -M); do
 	bspc monitor ${MONITOR} --reset-desktops \
 		$(echo -e '\uf0ac') \
 		$(echo -e '\uf120') \
-		$(echo -e '\uf040') \
+		$(echo -e '\uf121') \
 		$(echo -e '\uf086') \
 		$(echo -e '\uf0c5') \
 		$(echo -e '\uf0b1') \
