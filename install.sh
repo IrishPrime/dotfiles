@@ -40,6 +40,7 @@ case $VERBOSE in
 	*) echo "Verbosity must be between 0 and 5."; exit 1;;
 esac
 
-mkdir -p "${TARGET}"
+# Create some directories to ensure the entire subtree doesn't get linked to the repo
+mkdir -p "${TARGET}"/{.config,.local,.vim,Templates}
 
 stow --dir="${STOW_DIR}" --target="${TARGET}" ${NO} --verbose="${VERBOSE}" ${ACTION} */

@@ -30,8 +30,7 @@ distribution's instructions.
 
 The following environment variables are used in some `sxhkd` bindings and
 scripts. They should be set in `.profile` or similar to ensure all bindings
-work correctly. This makes it easier to specify the applications the user
-wishes to use without putting those preferences in version control.
+work correctly. Refer to the [Customization](#customization) section for more.
 
 - `BROWSER` - Web browser: `chromium`, `google-chrome`, `firefox`, etc.
 - `EDITOR` - Terminal based text editor: `vim`, `vim`, `emacs`, or `vim`.
@@ -55,15 +54,50 @@ wishes to use without putting those preferences in version control.
   manager, [bspwm][bspwm].
 - `dunst` - Configuration files for the [dunst][dunst] notification daemon.
 - `fish` - Configuration files and custom functions for the [fish][fish] shell.
-- `ssh` - Configuration files for `ssh`.
 - `sxhkd` - Configuration for the simple X hotkey daemon, [sxhkd][sxhkd].
 - `Templates` - Skeleton files for several programming languages.
 - `vim` - `.vimrc`.
-- `Xresources` - Terminal options and colorschemes.
+- `misc` - `.Xresources`, `.profile`, and other configuration options which are
+  less strictly bound to a single application.
 
 # Screenshot
 
 ![screenshot](./screenshot.jpg)
+
+# Customization
+
+I work on a few different systems that sometimes have similar, but slightly
+different environments. I want my settings to be as portable as possible, but I
+require some local customizations which differ from system to system.
+Presumably, other users will also want/require some slightly different
+settings. The two simplest ways to tweak these settings and still be able to
+get updates from this repository are branching and forking.
+
+The included `.profile` and `panel_options` files will almost certainly need to
+be edited.
+
+## Branching
+
+Create a new branch for each system running these settings. Merge the `master`
+branch into your custom branch as changes are pushed.
+
+1. `git checkout -b $(hostname)`
+1. Edit files to your liking.
+1. `git add -u`
+1. `git commit`
+
+After I push changes to this repository, you can merge them with your own customizations.
+
+1. `git pull`
+1. `git merge master`
+1. Resolve any merge conflicts and follow `git` instructions.
+
+## Forking
+
+1. Fork this repo.
+1. Edit files to your liking.
+1. [Sync this repo][sync-fork] with your fork.
+1. Resolve any merge conflicts and follow `git` instructions.
 
 # Troubleshooting
 
@@ -89,3 +123,4 @@ Manually create symlinks to these files in a location that will be in your
 [stow-doc]: http://www.gnu.org/software/stow/manual/stow.html "GNU Stow Documentation"
 [sxhkd]: https://github.com/baskerville/sxhkd "Simple X HotKey Daemon"
 [vim]: https://github.com/vim/vim "Vi Improved"
+[sync-fork]: https://help.github.com/articles/syncing-a-fork/ "Syncing a fork"

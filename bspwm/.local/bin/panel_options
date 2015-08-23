@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Settings
+export PANEL_FIFO=/tmp/panel-fifo
+export PANEL_HEIGHT=24
+export PANEL_FONT="DejaVuSansMono:size=11"
+export ICON_FONT="FontAwesome:size=11"
+export ICON_FONT2="fontcustom:size=11"
+export WLAN_DEV="wlp2s0"
+
+# Modules
+export LB_BATTERY=true
+export LB_CLOCK=true
+export LB_DATE=true
+export LB_MUSIC=true
+export LB_VOLUME=true
+export LB_WIFI=true

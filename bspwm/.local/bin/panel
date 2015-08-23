@@ -1,12 +1,6 @@
 #!/bin/bash
 
-PANEL_FIFO=/tmp/panel-fifo
-PANEL_HEIGHT=24
-PANEL_FONT="DejaVuSansMono:size=11"
-ICON_FONT="FontAwesome:size=11"
-ICON_FONT2="fontcustom:size=11"
-WLAN_DEV="wlp2s0"
-
+source panel_options
 source colors
 
 if [ $(pgrep -cx panel) -gt 1 ] ; then
@@ -24,19 +18,19 @@ bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf "T%s" > "$PANEL_FIFO" &
 
 # Clock
-while true; do
+while ${LB_CLOCK}; do
 	echo -e "C\uf017" $(date +"%H:%M");
 	sleep 5;
 done > "$PANEL_FIFO" &
 
 # Date
-while true; do
+while ${LB_DATE}; do
 	echo -e "D\uf073" $(date +'%b %d')
 	sleep 5
 done > $PANEL_FIFO &
 
 # Battery
-while true; do
+while ${LB_BATTERY}; do
 	BATT_LEVEL=$(acpi -b | grep -o '[[:digit:]]\+%' | cut -d'%' -f1)
 	if [ ${BATT_LEVEL} -ge 80 ]; then
 		echo -e "B%{F${green}}\uf116 ${BATT_LEVEL}%%{F-}"
@@ -49,8 +43,8 @@ while true; do
 	sleep 30;
 done > "$PANEL_FIFO" &
 
-# ALSA Volume
-while true; do
+# Volume
+while ${LB_VOLUME}; do
 	ALSA_VOLUME=$(amixer get Master | grep 'Mono: Playback' | grep -o '[[:digit:]]\+%' | cut -d'%' -f1)
 	ALSA_STATE=$(amixer get Master | grep 'Mono: Playback' | grep -o '\[on\]')
 
@@ -69,7 +63,7 @@ while true; do
 done > $PANEL_FIFO &
 
 # WiFi
-while true; do
+while ${LB_WIFI}; do
 	WIFI_SSID=$(iw ${WLAN_DEV} link | grep '^\s\+SSID:' | cut -d' ' -f2)
 	WIFI_SIGNAL=$(iw ${WLAN_DEV} link | grep '^\s\+signal:' | cut -d' ' -f2)
 	echo -e "L\uf1eb ${WIFI_SSID} | ${WIFI_SIGNAL}"
@@ -80,7 +74,7 @@ done > $PANEL_FIFO &
 echo -e "P\uf011" > $PANEL_FIFO &
 
 # Music Controls
-while true; do
+while ${LB_MUSIC}; do
 	if [ ! -e ~/.config/mpd/pid ]; then
 		echo -e "R%{T3}%{A:mpd; mpc play:}\uf198 %{A}%{T-}"
 		sleep 1
