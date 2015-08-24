@@ -88,7 +88,9 @@ branch into your custom branch as changes are pushed.
 
 After I push changes to this repository, you can merge them with your own customizations.
 
+1. `git checkout master`
 1. `git pull`
+1. `git checkout $(hostname)`
 1. `git merge master`
 1. Resolve any merge conflicts and follow `git` instructions.
 
