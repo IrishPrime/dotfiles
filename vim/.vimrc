@@ -1,4 +1,5 @@
 syntax on
+filetype on
 cd $HOME
 
 if &shell =~# 'fish$'
@@ -6,35 +7,35 @@ if &shell =~# 'fish$'
 endif
 
 " Plugin Management {{{
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
 
 " GitHub repos
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'baskerville/vim-sxhkdrc'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'dag/vim-fish'
-Plugin 'gorodinskiy/vim-coloresque'
-Plugin 'majutsushi/tagbar'
-Plugin 'mhinz/vim-startify'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-Plugin 'IrishPrime/WhiteWash.vim'
+"Plugin 'VundleVim/Vundle.vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'baskerville/vim-sxhkdrc'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dag/vim-fish'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'majutsushi/tagbar'
+Plug 'mhinz/vim-startify'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'IrishPrime/WhiteWash.vim'
 " Vim-Scripts repos
-Plugin 'hexHighlight.vim'
-Plugin 'matchit.zip'
-Plugin 'netrw.vim'
+Plug 'hexHighlight.vim'
+Plug 'matchit.zip'
+Plug 'netrw.vim'
 
-call vundle#end()
+"call vundle#end()
+call plug#end()
 " }}}
 
 " Options {{{
@@ -288,6 +289,9 @@ let g:notes_suffix = '.txt'
 let g:notes_title_sync = 'rename_file'
 " }}}
 
+" Startify {{{
+let g:startify_custom_header = []
+" }}}
 " Syntastic {{{
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '»'
@@ -308,8 +312,11 @@ endif
 " }}}
 
 " Colorscheme
+" set Vim-specific sequences for RGB colors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:solarized_termtrans = 1
-color solarized
+color solarized8_dark
 " }}}
 
 " vim: foldmethod=marker

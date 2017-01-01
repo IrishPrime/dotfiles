@@ -2,7 +2,7 @@
 if command ls --version 1>/dev/null 2>/dev/null
 	# This is GNU ls
 	function ls --description "List contents of directory"
-		set -l param --color=auto --group-directories-first
+		set -l param --color=auto --group-directories-first --quoting-style=literal --human-readable
 		command ls $param $argv
 	end
 

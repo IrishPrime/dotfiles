@@ -76,8 +76,9 @@ URxvt*depth:             32
 URxvt*perl-ext-common:   default,matcher
 URxvt*matcher.button:    1
 
-rofi.bc:                 S_blue
-rofi.bw:                 2
-rofi.fg-urgent:          S_red
-rofi.bgalt:              S_base02
+rofi.color-enabled:      true
+rofi.color-window:       S_base03, S_blue
+rofi.color-normal:       S_base03, S_base1, S_base02, S_blue, S_base3
+!rofi.color-active:
+rofi.color-urgent:       S_red
 rofi.terminal:           urxvtc

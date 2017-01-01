@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export SXHKD_SHELL="/bin/bash"
-export TERMINAL="urxvtc"
+export TERMINAL="termite"
 export EDITOR="vim"
 export VISUAL="gvim -f"
 export BROWSER="chromium"

@@ -15,7 +15,7 @@ mkfifo "$PANEL_FIFO"
 
 bspc config top_padding $PANEL_HEIGHT
 bspc subscribe all > "$PANEL_FIFO" &
-xtitle -sf "T%s" > "$PANEL_FIFO" &
+xtitle -t 90 -sf "T%s" > "$PANEL_FIFO" &
 
 # Clock
 while ${LB_CLOCK}; do

@@ -31,11 +31,11 @@ function git_prompt
 		echo -n '─'
 	end
 
-	set_color -o $argv
+	set_color $argv
 	echo -n '['
 	set_color normal
 	__fish_git_prompt | sed "s;\ (\(.*\));\1;"
-	set_color -o $argv
+	set_color $argv
 	echo -n ']'
 end
 
@@ -49,30 +49,30 @@ function fish_prompt
 		echo -n '┌─'
 	end
 
-	set_color -o $retc
+	set_color $retc
 	echo -n '['
 
 	if [ $USER = root ]
-		set_color -o red
+		set_color red
 	else
-		set_color -o green
+		set_color green
 	end
 
 	echo -n $USER
-	set_color -o white
+	set_color white
 	echo -n @
 
 	if [ -z "$SSH_CLIENT" ]
-		set_color -o blue
+		set_color blue
 	else
-		set_color -o cyan
+		set_color cyan
 	end
 
 	echo -n (hostname)
-	set_color -o white
+	set_color white
 	#echo -n :(prompt_pwd)
 	echo -n :(pwd|sed "s;$HOME;~;")
-	set_color -o $retc
+	set_color $retc
 	echo -n ']'
 	set_color normal
 
