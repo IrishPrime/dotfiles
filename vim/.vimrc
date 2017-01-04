@@ -289,18 +289,6 @@ let g:notes_suffix = '.txt'
 let g:notes_title_sync = 'rename_file'
 " }}}
 
-" Startify {{{
-let g:startify_bookmarks = [ {'r': '~/.vimrc'}, {'f': '~/.config/fish/config.fish'} ]
-let g:ctrlp_reuse_window = 'startify'
-let g:startify_custom_header = []
-" }}}
-
-" Syntastic {{{
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '»'
-let g:syntastic_check_on_wq = 0
-" }}}
-
 " The Silver Searcher {{{
 if executable('ag')
 	" Use ag over grep
@@ -312,6 +300,18 @@ if executable('ag')
 	" Skip caching since ag is so fast
 	let g:ctrlp_use_caching = 0
 endif
+" }}}
+
+" Startify {{{
+let g:startify_bookmarks = [ {'r': '~/.vimrc'}, {'f': '~/.config/fish/config.fish'} ]
+let g:ctrlp_reuse_window = 'startify'
+let g:startify_custom_header = []
+" }}}
+
+" Syntastic {{{
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '»'
+let g:syntastic_check_on_wq = 0
 " }}}
 
 " Colorscheme
