@@ -1,7 +1,4 @@
-syntax on
-filetype on
-cd $HOME
-
+" Use bash instead of fish for portability
 if &shell =~# 'fish$'
 	set shell=bash
 endif
@@ -10,14 +7,11 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " GitHub repos
-"Plugin 'VundleVim/Vundle.vim'
-Plug 'lifepillar/vim-solarized8'
 Plug 'baskerville/vim-sxhkdrc'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'gorodinskiy/vim-coloresque'
+Plug 'lifepillar/vim-solarized8'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -26,6 +20,8 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'IrishPrime/WhiteWash.vim'
@@ -34,7 +30,6 @@ Plug 'hexHighlight.vim'
 Plug 'matchit.zip'
 Plug 'netrw.vim'
 
-"call vundle#end()
 call plug#end()
 " }}}
 
@@ -66,7 +61,7 @@ set showcmd
 set showmatch
 set noshowmode
 set smartcase
-"set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with Airline
+"set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with statusline plugins
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set tags=tags;/
 set t_Co=256
@@ -74,11 +69,17 @@ set wildmenu
 set wildignore=*.o,*.swp,*.class,*.pyc
 set wildmode=list:longest,full
 set wrap
+filetype on
+syntax on
 
 " Mouse support, just in case
 if has("mouse")
 	set mouse=a
 endif
+" }}}
+
+" Add more list styles {{{
+set formatlistpat=^\\s*[\\[({]\\\?\\([0-9]\\+\\\|[iIvVxXlLcCdDmM]\\+\\\|[a-zA-Z]\\)[\\]:.)}]\\s\\+\\\|^\\s*[-+o*]\\s\\+
 " }}}
 
 " Auto commands {{{
@@ -147,7 +148,8 @@ if has("cscope")
 
 	" Automatically load CScope
 	function! LoadCscope()
-		let db = findfile("cscope.out", ".;")
+		" Use full paths
+		let db = fnamemodify(findfile("cscope.out", ".;"), ":p")
 		if (!empty(db))
 			let path = strpart(db, 0, match(db, "/cscope.out$"))
 			set nocscopeverbose " suppress 'duplicate connection' error
@@ -176,6 +178,12 @@ set foldtext=NeatFoldText()
 " Mappings {{{
 " Mapping to edit vimrc
 nmap <Leader>v :tabedit $MYVIMRC<CR>
+
+" Mapping from sensible.vim. :nohlsearch and update diffs {{{
+if maparg('<C-L>', 'n') ==# ''
+	nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+" }}}
 
 " Mappings to navigate my C style {{{
 :map [[ ?{<CR>w99[{
@@ -231,14 +239,6 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 \endif<CR>
 " }}}
 
-" Mapping to toggle the NERDTree file browser and NERDTree options {{{
-map <F3> :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks = 1
-let NERDChristmasTree = 1
-let NERDTreeHijackNetrw = 1
-let NERDTreeIgnore = ['\.pyc$']
-" }}}
-
 " Mapping to toggle Tagbar tag browser
 map <F4> :TagbarToggle<CR>
 
@@ -290,8 +290,11 @@ let g:notes_title_sync = 'rename_file'
 " }}}
 
 " Startify {{{
+let g:startify_bookmarks = [ {'r': '~/.vimrc'}, {'f': '~/.config/fish/config.fish'} ]
+let g:ctrlp_reuse_window = 'startify'
 let g:startify_custom_header = []
 " }}}
+
 " Syntastic {{{
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '»'
@@ -312,11 +315,15 @@ endif
 " }}}
 
 " Colorscheme
+if has('termguicolors') && ($STY != '')
+	set termguicolors
+endif
+
 " set Vim-specific sequences for RGB colors
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:solarized_termtrans = 1
-color solarized8_dark
+colorscheme solarized8_dark
 " }}}
 
 " vim: foldmethod=marker
