@@ -13,4 +13,4 @@ export MAIL_CLIENT="${TERMINAL} -e mutt"
 export MUSIC_PLAYER="google-music.sh"
 export VIRTUALIZATION="virt-manager"
 
-export PATH=$PATH:~/bin/:~/.local/bin/:
+export PATH=$PATH:~/.local/bin/:
