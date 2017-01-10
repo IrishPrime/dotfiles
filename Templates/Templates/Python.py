@@ -5,14 +5,14 @@ import argparse
 
 
 def main():
-    parser = argparse.ArgumentParser(description='')
-    parser.add_argument('file_path', metavar='FILE', type=str,
-            help='Path to input file')
-    args = parser.parse_args()
+	parser = argparse.ArgumentParser(description='')
+	parser.add_argument('file_path', metavar='FILE', type=str,
+		help='Path to input file')
+	args = parser.parse_args()
 
 
 if __name__ == '__main__':
-    main()
+	main()
 
 
 # vim: tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
