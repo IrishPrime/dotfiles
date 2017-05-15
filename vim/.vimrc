@@ -26,9 +26,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'IrishPrime/WhiteWash.vim'
 " Vim-Scripts repos
-Plug 'hexHighlight.vim'
-Plug 'matchit.zip'
-Plug 'netrw.vim'
+Plug 'vim-scripts/hexHighlight.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/netrw.vim'
 
 call plug#end()
 " }}}
@@ -69,6 +69,7 @@ set wildmenu
 set wildignore=*.o,*.swp,*.class,*.pyc
 set wildmode=list:longest,full
 set wrap
+set viminfo='100,n$HOME/.vim/files/info/viminfo
 filetype on
 syntax on
 
