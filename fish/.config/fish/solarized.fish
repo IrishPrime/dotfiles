@@ -1,0 +1,18 @@
+#!/bin/fish
+
+set -U base03	'#002b36'
+set -U base02	'#073642'
+set -U base01	'#586e75'
+set -U base00	'#657b83'
+set -U base0	'#839496'
+set -U base1	'#93a1a1'
+set -U base2	'#eee8d5'
+set -U base3	'#fdf6e3'
+set -U yellow	'#b58900'
+set -U orange	'#cb4b16'
+set -U red		'#dc322f'
+set -U magenta	'#d33682'
+set -U violet	'#6c71c4'
+set -U blue		'#268bd2'
+set -U cyan		'#2aa198'
+set -U green	'#859900'
