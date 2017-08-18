@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Comment=Binary space partitioning window manager
-DesktopNames=bspwm
-Icon=
-Keywords=launch;bspwm;desktop;session;
-Name=bspwm
-Exec=bspwm-session
-Type=Application

@@ -1,10 +1,17 @@
 #!/bin/bash
 
-dropbox start &
-nitrogen --restore
-setxkbmap -option ctrl:nocaps
-syndaemon -t -k -i 1 -d &
-xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
+nitrogen --restore
+cbatticon &
+dropbox start &
+numlockx on
+setxkbmap -option ctrl:nocaps
+xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 polybar irish &
+
+case $(hostname) in
+	europa)
+		polybar europa &
+		;;
+esac
