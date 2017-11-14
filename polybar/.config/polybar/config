@@ -11,32 +11,29 @@
 background = #222222
 background-alt = #444444
 foreground = #FFFFFF
-foreground-alt = #555555
+foreground-alt = #666666
 primary = #268BD2
 secondary = #E60053
 alert = #DC322F
 
 [global/wm]
-margin-top = 5
+margin-top = 0
 margin-bottom = 0
 
-[bar/irish]
-#monitor = ${env:MONITOR:HDMI-1}
+[bar/wisp]
 width = 100%
 height = 24
 offset-x = 0
 offset-y = 0
 
-#background = ${xrdb:color9}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 overline-size = 2
 overline-color = #f00
-underline-size = 2
+underline-size = 4
 underline-color = #00f
-
-border-bottom = 2
+border-bottom-size = 0
 border-bottom-color = #333
 
 spacing = 1
@@ -45,33 +42,111 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = FontAwesome:size=10:fontformat=truetype;0
-font-1 = fontcustom:size=10:fontformat=truetype;0
-font-2 = DejaVuSansMono:size=10:weight=bold;0
-font-3 = fixed:pixelsize=10;0
-font-4 = unifont:size=6:heavy:fontformat=truetype;-2
-font-5 = siji:pixelsize=10;0
+font-0 = DejaVuSans:size=10;0
+font-1 = WunconSiji:pixelsize=10;0
+font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+font-3 = FontAwesome:size=10;0
+font-4 = fontcustom:size=10;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = mpd backlight volume wlan memory cpu battery temperature date powermenu
+modules-right = backlight volume wisp-network cpu memory battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
-#tray-transparent = true
-#tray-background = #0063ff
 
-#wm-restack = bspwm
-#wm-restack = i3
+wm-restack = bspwm
 
-#override-redirect = true
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
 
-#scroll-up = bspwm-desknext
-#scroll-down = bspwm-deskprev
+enable-ipc = true
 
-#scroll-up = i3wm-wsnext
-#scroll-down = i3wm-wsprev
+[bar/ganymede-primary]
+monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 22
+offset-x = 0
+offset-y = 0
 
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = WunconSiji:pixelsize=10;0
+font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+font-3 = FontAwesome:size=10;0
+font-4 = fontcustom:size=10;0
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = mpd volume ganymede-network cpu memory temperature date powermenu
+
+tray-position = right
+tray-padding = 2
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
+
+[bar/ganymede-secondary]
+monitor = ${env:MONITOR:DVI-I-1}
+width = 100%
+height = 22
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = WunconSiji:pixelsize=10;0
+font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+font-3 = FontAwesome:size=10;0
+font-4 = fontcustom:size=10;0
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = filesystem
+
+tray-position = right
+tray-padding = 2
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
 
 [module/xwindow]
 type = internal/xwindow
@@ -98,13 +173,17 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted = %mountpoint%: %percentage_free%
+bar-used-empty = ─
+bar-used-fill = ━
+bar-used-indicator = ▪
+bar-used-width = 10
+label-mounted = %mountpoint%: %percentage_used%%
+format-mounted = <label-mounted> <bar-used>
 
-label-unmounted = %mountpoint%: not mounted
+label-unmounted = %mountpoint%: NULL
 label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
-
 type = internal/bspwm
 ws-icon-default = x
 ws-icon-0 = 
@@ -118,19 +197,19 @@ ws-icon-7 = 
 ws-icon-8 = 
 ws-icon-9 = 
 
-label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
@@ -190,10 +269,10 @@ format = <label> <bar>
 label = BL
 
 bar-width = 10
-bar-indicator = ●
+bar-indicator = ▪
 bar-indicator-foreground = #ff
 bar-indicator-font = 2
-bar-fill = ─
+bar-fill = ━
 bar-fill-font = 2
 bar-fill-foreground = #B58900
 bar-empty = ─
@@ -203,20 +282,20 @@ bar-empty-foreground = ${colors.foreground-alt}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #DC322F
-label = %percentage%
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #2AA198
-label = %percentage_used%
+label = %percentage_used%%
 
-[module/wlan]
+[module/wisp-network]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
@@ -229,12 +308,20 @@ label-connected = %essid%
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+# 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
 ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/ganymede-network]
+type = internal/network
+interface =
+interval = 3.0
+accumulate-stats = true
 
 [module/date]
 type = internal/date
@@ -246,9 +333,9 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #D33682
+format-underline = #859900
 
 label = %date% %time%
 
@@ -259,7 +346,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -271,11 +358,11 @@ bar-volume-foreground-3 = #55aa55
 bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = ●
+bar-volume-gradient = true
+bar-volume-indicator = ▪
 bar-volume-indicator-font = 2
 bar-volume-indicator-foreground = #ff
-bar-volume-fill = ─
+bar-volume-fill = ━
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
@@ -293,18 +380,18 @@ format-charging-underline = #268BD2
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -322,18 +409,18 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
 
-label-open =  power
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-open =  power
+label-open-foreground = ${colors.alert}
+label-close =  cancel
+label-close-foreground = ${colors.alert}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
@@ -348,7 +435,7 @@ menu-1-1 = reboot
 menu-1-1-exec = sudo reboot
 
 menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
+menu-2-0-exec = systemctl poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
