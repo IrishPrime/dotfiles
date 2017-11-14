@@ -1,10 +1,18 @@
 #!/bin/bash
 
-dropbox start &
 nitrogen --restore
 setxkbmap -option ctrl:nocaps
 syndaemon -t -k -i 1 -d &
 xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
-polybar irish &
+
+case $(hostname) in
+	wisp)
+		polybar --reload wisp &
+		;;
+	ganymede)
+		polybar --reload ganymede-primary &
+		polybar --reload ganymede-secondary &
+		;;
+esac
