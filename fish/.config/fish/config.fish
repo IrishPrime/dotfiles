@@ -13,6 +13,8 @@ set __fish_git_prompt_char_upstream_behind '↓'
 
 tty|grep -q tty; and set tty tty; or set tty pts
 
+set fish_color_search_match --background='#EEE8D5'
+
 # Options for less
 set -x LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
 set -x LESS_TERMCAP_md \e'[01;38;5;74m'  # begin bold
