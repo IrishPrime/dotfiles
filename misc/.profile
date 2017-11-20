@@ -14,3 +14,6 @@ export MUSIC_PLAYER="google-music.sh"
 export VIRTUALIZATION="virt-manager"
 
 export PATH=$PATH:~/.local/bin/:
+
+# Avoid errors about the accessibility bus
+export NO_AT_BRIDGE=1
