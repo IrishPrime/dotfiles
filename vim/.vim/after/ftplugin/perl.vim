@@ -1,1 +1,1 @@
-set keywordprg = perldoc
+set keywordprg=perldoc

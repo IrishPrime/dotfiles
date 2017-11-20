@@ -3,7 +3,6 @@
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
 nitrogen --restore
-cbatticon &
 dropbox start &
 numlockx on
 setxkbmap -option ctrl:nocaps
@@ -13,5 +12,9 @@ polybar irish &
 case $(hostname) in
 	europa)
 		polybar europa &
+		cbatticon &
+		;;
+	ganymede)
+		polybar ganymede &
 		;;
 esac

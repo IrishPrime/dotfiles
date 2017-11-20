@@ -11,7 +11,6 @@ Plug 'baskerville/vim-sxhkdrc'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'lifepillar/vim-solarized8'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -22,8 +21,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'IrishPrime/WhiteWash.vim'
 " Vim-Scripts repos
 Plug 'vim-scripts/hexHighlight.vim'
@@ -121,6 +118,14 @@ if has("autocmd")
 	autocmd BufNewFile *.py     0r $HOME/Templates/Python.py
 	autocmd BufNewFile *.*htm*  0r $HOME/Templates/XHTML.xhtml
 	autocmd BufNewFile Makefile 0r $HOME/Templates/Makefile
+	" autocmd BufNewFile,BufRead {*.pl,*.pm,*.t} setlocal foldexpr=getline(v:lnum)=~'^=cut'?'<1':getline(v:lnum)=~'^='?'1':'=' |
+	" autocmd BufNewFile,BufRead {*.pl,*.pm,*.t} setlocal foldmethod=expr
+
+	augroup vimrc-incsearch-highlight
+		autocmd!
+		autocmd CmdlineEnter /,\? :set hlsearch
+		autocmd CmdlineLeave /,\? :set nohlsearch
+	augroup END
 endif
 " }}}
 
@@ -278,25 +283,21 @@ let g:airline_symbols.linenr = ''
 " }}}
 
 " CtrlP {{{
-let g:ctrlp_root_markers = ['cscope.out']
 let g:ctrlp_by_filename = 1
-let g:ctrlp_regexp = 1
+let g:ctrlp_extensions = ['tag', 'quickfix', 'undo', 'line', 'changes', 'mixed']
 let g:ctrlp_open_multiple_files = '1rjv'
-" }}}
-
-" Notes.vim {{{
-let g:notes_directories = ['~/Documents/Notes']
-let g:notes_suffix = '.txt'
-let g:notes_title_sync = 'rename_file'
+let g:ctrlp_regexp = 1
+let g:ctrlp_root_markers = ['cscope.out']
 " }}}
 
 " The Silver Searcher {{{
 if executable('ag')
 	" Use ag over grep
-	set grepprg=ag\ --nogroup\ --nocolor
+	set grepprg=ag\ --nogroup\ --nocolor\ --column
+	set grepformat=%f:%l:%c%m
 
 	" Use ag in CtrlP
-	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore .git -g ""'
 
 	" Skip caching since ag is so fast
 	let g:ctrlp_use_caching = 0
@@ -317,15 +318,17 @@ let g:syntastic_enable_perl_checker = 1
 " }}}
 
 " Colorscheme
+" https://github.com/lifepillar/vim-solarized8
 if has('termguicolors') && ($STY != '')
 	set termguicolors
 endif
 
 " set Vim-specific sequences for RGB colors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
+let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
 let g:solarized_termtrans = 1
-colorscheme solarized8_dark
+let g:solarized_use16 = 1
+colorscheme solarized8
 " }}}
 
 " vim: foldmethod=marker
