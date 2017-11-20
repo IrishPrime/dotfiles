@@ -207,36 +207,36 @@ timeout = 0
 # to find fitting options for rules.
 
 #[espeak]
-#summary = "*"
-#script = dunst_espeak.sh
+# summary = "*"
+# script = dunst_espeak.sh
 
 #[script-test]
-#summary = "*script*"
-#script = dunst_test.sh
+# summary = "*script*"
+# script = dunst_test.sh
 
 #[ignore]
 # This notification will not be displayed
-#summary = "foobar"
-#format = ""
+# summary = "foobar"
+# format = ""
 
 #[signed_on]
-#appname = Pidgin
-#summary = "*signed on*"
-#urgency = low
+# appname = Pidgin
+# summary = "*signed on*"
+# urgency = low
 
 #[signed_off]
-#appname = Pidgin
-#summary = *signed off*
-#urgency = low
+# appname = Pidgin
+# summary = *signed off*
+# urgency = low
 
 #[says]
-#appname = Pidgin
-#summary = *says*
-#urgency = critical
+# appname = Pidgin
+# summary = *says*
+# urgency = critical
 
 #[twitter]
-#appname = Pidgin
-#summary = *twitter.com*
-#urgency = normal
+# appname = Pidgin
+# summary = *twitter.com*
+# urgency = normal
 
 # vim: ft=cfg

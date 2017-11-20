@@ -1,20 +1,18 @@
 #!/bin/bash
 
-xrdb -merge ~/.Xresources
-xsetroot -cursor_name left_ptr
 nitrogen --restore
-dropbox start &
-numlockx on
 setxkbmap -option ctrl:nocaps
 xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
-polybar irish &
+xrdb -merge ~/.Xresources
+xsetroot -cursor_name left_ptr
 
 case $(hostname) in
-	europa)
-		polybar europa &
-		cbatticon &
+	wisp)
+		polybar --reload wisp &
 		;;
 	ganymede)
-		polybar ganymede &
+		polybar --reload ganymede-primary &
+		polybar --reload ganymede-secondary &
+		numlockx on
 		;;
 esac

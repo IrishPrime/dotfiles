@@ -1,12 +1,10 @@
 #!/usr/bin/perl
 
-# 
-
+use strict;
+use warnings;
 use Data::Dumper;
 use Getopt::Std;
 use Log::Message::Simple qw[msg error debug];
-use strict;
-use warnings;
 
 use constant {
 	VERSION => '0.1.0',
