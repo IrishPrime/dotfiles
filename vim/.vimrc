@@ -315,6 +315,7 @@ let g:startify_custom_header = []
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '»'
 let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_perl_checker = 1
 " }}}
 
 " Colorscheme
@@ -326,7 +327,8 @@ endif
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let g:solarized_termtrans = 1
-colorscheme solarized8_dark
+let g:solarized_use16 = 1
+colorscheme solarized8
 " }}}
 
 " vim: foldmethod=marker
