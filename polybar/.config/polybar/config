@@ -63,9 +63,9 @@ scroll-down = bspwm-deskprev
 enable-ipc = true
 
 [bar/ganymede-primary]
-monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DVI-D-0}
 width = 100%
-height = 22
+height = 24
 offset-x = 0
 offset-y = 0
 
@@ -97,6 +97,8 @@ modules-right = mpd volume ganymede-network cpu memory temperature date powermen
 
 tray-position = right
 tray-padding = 2
+#tray-transparent = true
+#tray-background = #0063ff
 
 wm-restack = bspwm
 
@@ -106,9 +108,9 @@ scroll-down = bspwm-deskprev
 enable-ipc = true
 
 [bar/ganymede-secondary]
-monitor = ${env:MONITOR:DVI-I-1}
+monitor = ${env:MONITOR:HDMI-0}
 width = 100%
-height = 22
+height = 24
 offset-x = 0
 offset-y = 0
 
@@ -138,8 +140,10 @@ modules-left = bspwm xwindow
 modules-center =
 modules-right = filesystem
 
-tray-position = right
-tray-padding = 2
+#tray-position = right
+#tray-padding = 2
+#tray-transparent = true
+#tray-background = #0063ff
 
 wm-restack = bspwm
 
@@ -319,7 +323,7 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/ganymede-network]
 type = internal/network
-interface =
+interface = enp0s31f6
 interval = 3.0
 accumulate-stats = true
 
