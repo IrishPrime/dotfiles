@@ -46,10 +46,28 @@ work correctly. Refer to the [Customization](#customization) section for more.
 - `MUSIC_PLAYER` - Music player: `google-music.sh`, `ncmpcpp`, `cmus`, `banshee`, etc.
 - `VIRTUALIZATION` - Virtualization hypervisor: `virt-manager`, `VirtualBox`, etc.
 
+### XDG Default Applications
+
+Not all applications use the environment variables, but rather rely on XDG (and
+`xdg-open`). See the Arch Wiki page on [Default Applications][aw-default-apps]
+for a detailed explanation and examples.
+
+#### Web Browser
+```
+$ xdg-mime default <browser>.desktop x-scheme-handler/http
+$ xdg-mime default <browser>.desktop x-scheme-handler/https
+```
+
+#### Bittorrent
+```
+$ xdg-mime default <torrent-client>.desktop x-scheme-handler/magnet
+$ xdg-mime default <torrent-client>.desktop application/x-bittorrent
+```
+
 # Packages
 
 - `bash` - `.bashrc` and aliases.
-- `bin` - Scripts for [lemonbar][lemonbar] and application launchers.
+- `bin` - Scripts for [polybar][polybar] and application launchers.
 - `bspwm` - Configuration files for the binary space partitioning window
   manager, [bspwm][bspwm].
 - `dunst` - Configuration files for the [dunst][dunst] notification daemon.
@@ -115,14 +133,15 @@ Manually create symlinks to these files in a location that will be in your
 
 `# ln -s ~/.local/bin/panel /usr/local/bin/panel`, etc.
 
+[aw-default-apps]: https://wiki.archlinux.org/index.php/Default_applications "Arch Wiki - Default Applications"
 [bspwm]: https://github.com/baskerville/bspwm "Binary Space Partitioning Window Manager"
 [dunst]: https://github.com/knopwob/dunst "dunst Notification Daemon"
 [fish]: http://fishshell.com "Fish Shell"
 [font-awesome]: http://fortawesome.github.io/Font-Awesome "Font Awesome"
 [foundation-icon-font]: http://zurb.com/playground/foundation-icon-fonts-3 "Foundation Icon Fonts"
-[lemonbar]: https://github.com/LemonBoy/bar "LemonBoy's bar"
-[stow]: https://www.gnu.org/software/stow "GNU Stow"
+[polybar]: https://github.com/jaagr/polybar "Polybar"
 [stow-doc]: http://www.gnu.org/software/stow/manual/stow.html "GNU Stow Documentation"
+[stow]: https://www.gnu.org/software/stow "GNU Stow"
 [sxhkd]: https://github.com/baskerville/sxhkd "Simple X HotKey Daemon"
-[vim]: https://github.com/vim/vim "Vi Improved"
 [sync-fork]: https://help.github.com/articles/syncing-a-fork/ "Syncing a fork"
+[vim]: https://github.com/vim/vim "Vi Improved"
