@@ -4,33 +4,32 @@ if &shell =~# 'fish$'
 endif
 
 " Plugin Management {{{
-call plug#begin('~/.vim/bundle')
+packadd minpac
+call minpac#init()
 
 " GitHub repos
-Plug 'baskerville/vim-sxhkdrc'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'dag/vim-fish'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'lifepillar/vim-solarized8'
-Plug 'majutsushi/tagbar'
-Plug 'mhinz/vim-startify'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'IrishPrime/WhiteWash.vim'
-" Vim-Scripts repos
-Plug 'vim-scripts/hexHighlight.vim'
-Plug 'vim-scripts/matchit.zip'
-Plug 'vim-scripts/netrw.vim'
+call minpac#add('baskerville/vim-sxhkdrc')
+call minpac#add('ctrlpvim/ctrlp.vim')
+call minpac#add('dag/vim-fish')
+call minpac#add('gorodinskiy/vim-coloresque')
+call minpac#add('IrishPrime/WhiteWash.vim')
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('lifepillar/vim-solarized8')
+call minpac#add('majutsushi/tagbar')
+call minpac#add('mhinz/vim-startify')
+call minpac#add('nathanaelkane/vim-indent-guides')
+call minpac#add('ryanoasis/vim-devicons')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-vinegar')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('w0rp/ale')
 
-call plug#end()
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 " }}}
 
 " Options {{{
