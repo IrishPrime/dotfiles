@@ -6,6 +6,7 @@ xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
 
+sleep 0.5
 case $(hostname) in
 	wisp)
 		polybar --reload wisp &

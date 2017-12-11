@@ -312,13 +312,6 @@ let g:ctrlp_reuse_window = 'startify'
 let g:startify_custom_header = []
 " }}}
 
-" Syntastic {{{
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '»'
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_perl_checker = 1
-" }}}
-
 " Colorscheme
 " https://github.com/lifepillar/vim-solarized8
 if has('termguicolors') && ($STY != '')
