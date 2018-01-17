@@ -24,7 +24,7 @@ set -x LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 set -x LESS_TERMCAP_ue \e'[0m'           # end underline
 set -x LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
-set --erase fish_greeting
+set -U fish_greeting ""
 set -U fish_user_paths /bin /sbin /usr/local/bin /usr/local/sbin ~/.local/bin
 
 eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
