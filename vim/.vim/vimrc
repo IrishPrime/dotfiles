@@ -307,7 +307,7 @@ endif
 " }}}
 
 " Startify {{{
-let g:startify_bookmarks = [ {'r': '~/.vimrc'}, {'f': '~/.config/fish/config.fish'} ]
+let g:startify_bookmarks = [ {'r': $MYVIMRC}, {'f': '~/.config/fish/config.fish'} ]
 let g:ctrlp_reuse_window = 'startify'
 let g:startify_custom_header = []
 " }}}
