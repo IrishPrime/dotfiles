@@ -5,10 +5,10 @@ import argparse
 
 
 def main():
-	parser = argparse.ArgumentParser(description='')
-	parser.add_argument('file_path', metavar='FILE', type=str,
+	PARSER = argparse.ArgumentParser(description='')
+	PARSER.add_argument('file_path', metavar='FILE', type=str,
 			help='Path to input file')
-	args = parser.parse_args()
+	ARGS = PARSER.parse_args()
 
 
 if __name__ == '__main__':
