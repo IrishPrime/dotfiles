@@ -60,7 +60,7 @@ set showcmd
 set showmatch
 set noshowmode
 set smartcase
-"set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Disable with statusline plugins
+set statusline=%F%m%r%h%w\ [%n]%=%y\ [%4l,%3v\ %p%%] " Unused with statusline plugins
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set tags=tags;/
 set t_Co=256
@@ -299,7 +299,7 @@ if executable('ag')
 	set grepformat=%f:%l:%c%m
 
 	" Use ag in CtrlP
-	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore .git -g ""'
+	let g:ctrlp_user_command = 'ag -U %s -l --nocolor --hidden --ignore .git -g ""'
 
 	" Skip caching since ag is so fast
 	let g:ctrlp_use_caching = 0

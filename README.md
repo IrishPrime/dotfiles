@@ -94,6 +94,11 @@ get updates from this repository are branching and forking.
 The included `.profile` and `panel_options` files will almost certainly need to
 be edited.
 
+Additionally, `.profile` will source `.profile.local` if it exists. This file
+is not part of this repository, but can be used to set environment variables
+which are unique to the workstation and too sensitive to place in version
+control.
+
 ## Branching
 
 Create a new branch for each system running these settings. Merge the `master`
