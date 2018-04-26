@@ -1,4 +1,4 @@
-CC=
+CC=gcc
 CFLAGS=-Wall -Wstrict-prototypes -g -I.
 DEFS=-DDEBUG
 DEPS=
@@ -18,9 +18,11 @@ all: $(EXECUTABLE)
 test: $(EXECUTABLE)
 
 clean:
-	rm -rf *.o $(EXECUTABLE)
+	rm -rf $(OBJECTS) $(EXECUTABLE)
 
 debug:
 	make clean
 	$(CC) $(CFLAGS) $(DEFS) $< -c $(SOURCES)
 	make all
+
+.PHONY: clean

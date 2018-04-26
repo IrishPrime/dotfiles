@@ -11,7 +11,6 @@ call minpac#init()
 call minpac#add('baskerville/vim-sxhkdrc')
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('dag/vim-fish')
-call minpac#add('gorodinskiy/vim-coloresque')
 call minpac#add('IrishPrime/WhiteWash.vim')
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('lifepillar/vim-solarized8')
@@ -20,6 +19,7 @@ call minpac#add('mhinz/vim-startify')
 call minpac#add('nathanaelkane/vim-indent-guides')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('tpope/vim-abolish')
+call minpac#add('tpope/vim-db')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-surround')
@@ -34,10 +34,10 @@ command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 " }}}
 
 " Options {{{
-set autochdir
 set autowrite
 set background=dark
 set backspace=indent,eol,start
+set breakindent
 set cursorline
 set diffopt+=vertical
 set encoding=utf-8
@@ -56,7 +56,9 @@ set laststatus=2
 set linebreak
 set listchars=tab:→\ ,eol:¬
 set nohlsearch
+set nojoinspaces
 set number relativenumber
+set path=**
 set showcmd
 set showmatch
 set noshowmode
@@ -124,10 +126,10 @@ if has("autocmd")
 	" autocmd BufNewFile,BufRead {*.pl,*.pm,*.t} setlocal foldexpr=getline(v:lnum)=~'^=cut'?'<1':getline(v:lnum)=~'^='?'1':'=' |
 	" autocmd BufNewFile,BufRead {*.pl,*.pm,*.t} setlocal foldmethod=expr
 
-	augroup vimrc-incsearch-highlight
+	augroup incsearch_highlight
 		autocmd!
-		autocmd CmdlineEnter /,\? :set hlsearch
-		autocmd CmdlineLeave /,\? :set nohlsearch
+		autocmd CmdlineEnter /,\? set hlsearch
+		autocmd CmdlineLeave /,\? set nohlsearch
 	augroup END
 endif
 " }}}

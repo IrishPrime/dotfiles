@@ -41,6 +41,6 @@ case $VERBOSE in
 esac
 
 # Create some directories to ensure the entire subtree doesn't get linked to the repo
-mkdir -p "${TARGET}"/{.config,.local,.vim,Templates}
+mkdir -p "${TARGET}"/{.config,.local,.vim/files/info,Templates}
 
 stow --dir="${STOW_DIR}" --target="${TARGET}" ${NO} --verbose="${VERBOSE}" ${ACTION} */
