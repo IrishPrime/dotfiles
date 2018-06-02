@@ -26,6 +26,6 @@ set -x LESS_TERMCAP_ue \e'[0m'           # end underline
 set -x LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 set -U fish_greeting ""
-set -U fish_user_paths /bin /sbin /usr/local/bin /usr/local/sbin ~/.local/bin
+set -U fish_user_paths ~/.local/bin
 
 eval (dircolors -c ~/.dircolors | sed 's/>&\/dev\/null$//')
