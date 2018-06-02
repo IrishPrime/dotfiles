@@ -26,6 +26,7 @@ Session.vim
 # auto-generated tag files
 tags
 # ignore installed plugins
+vim/.vim/pack/minpac/opt/
 vim/.vim/pack/minpac/start/
 
 # Ignore local customizations

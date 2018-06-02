@@ -8,7 +8,7 @@ packadd minpac
 call minpac#init()
 
 " GitHub repos
-call minpac#add('baskerville/vim-sxhkdrc')
+call minpac#add('baskerville/vim-sxhkdrc', {'type': 'opt'})
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('dag/vim-fish')
 call minpac#add('IrishPrime/WhiteWash.vim')
@@ -120,7 +120,9 @@ if has("autocmd")
 	autocmd BufNewFile *.c      0r $HOME/Templates/C.c
 	autocmd BufNewFile *.php    0r $HOME/Templates/PHP.php
 	autocmd BufNewFile *.pl     0r $HOME/Templates/Perl.pl
+	autocmd BufNewFile *.pm     0r $HOME/Templates/Perl.pm
 	autocmd BufNewFile *.py     0r $HOME/Templates/Python.py
+	autocmd BufNewFile *.spec   0r $HOME/Templates/RPM.spec
 	autocmd BufNewFile *.*htm*  0r $HOME/Templates/XHTML.xhtml
 	autocmd BufNewFile Makefile 0r $HOME/Templates/Makefile
 	" autocmd BufNewFile,BufRead {*.pl,*.pm,*.t} setlocal foldexpr=getline(v:lnum)=~'^=cut'?'<1':getline(v:lnum)=~'^='?'1':'=' |
