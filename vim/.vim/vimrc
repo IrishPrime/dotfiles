@@ -25,6 +25,7 @@ call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
+call minpac#add('StanAngeloff/php.vim')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('w0rp/ale')
@@ -58,7 +59,7 @@ set listchars=tab:→\ ,eol:¬
 set nohlsearch
 set nojoinspaces
 set number relativenumber
-set path=**
+set path+=**
 set showcmd
 set showmatch
 set noshowmode
@@ -72,7 +73,6 @@ set wildignore=*.o,*.swp,*.class,*.pyc
 set wildmode=list:longest,full
 set wrap
 set viminfo='100,n$HOME/.vim/files/info/viminfo
-filetype on
 syntax on
 
 " Mouse support, just in case
@@ -290,10 +290,8 @@ let g:airline_symbols.linenr = ''
 " }}}
 
 " CtrlP {{{
-let g:ctrlp_by_filename = 1
 let g:ctrlp_extensions = ['tag', 'quickfix', 'undo', 'line', 'changes', 'mixed']
 let g:ctrlp_open_multiple_files = '1rjv'
-let g:ctrlp_regexp = 1
 let g:ctrlp_root_markers = ['cscope.out']
 " }}}
 
