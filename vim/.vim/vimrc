@@ -4,6 +4,7 @@ if &shell =~# 'fish$'
 endif
 
 " Plugin Management {{{
+packadd! matchit
 packadd minpac
 call minpac#init()
 

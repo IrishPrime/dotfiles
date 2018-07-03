@@ -28,3 +28,5 @@ use warnings;
 =head1 LICENSE
 
 =cut
+
+1;
