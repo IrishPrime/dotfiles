@@ -9,7 +9,8 @@ packadd minpac
 call minpac#init()
 
 " GitHub repos
-call minpac#add('baskerville/vim-sxhkdrc', {'type': 'opt'})
+" call minpac#add('baskerville/vim-sxhkdrc', {'type': 'opt'})
+call minpac#add('kovetskiy/sxhkd-vim', {'type': 'opt'})
 call minpac#add('ctrlpvim/ctrlp.vim')
 call minpac#add('dag/vim-fish')
 call minpac#add('IrishPrime/WhiteWash.vim')
@@ -70,7 +71,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set tags=tags;/
 set t_Co=256
 set wildmenu
-set wildignore=*.o,*.swp,*.class,*.pyc
+set wildignore=*.o,*.swp,*.class,*.pyc,dist/*,.sass-cache/*
 set wildmode=list:longest,full
 set wrap
 set viminfo='100,n$HOME/.vim/files/info/viminfo
@@ -303,7 +304,7 @@ if executable('ag')
 	set grepformat=%f:%l:%c%m
 
 	" Use ag in CtrlP
-	let g:ctrlp_user_command = 'ag -U %s -l --nocolor --hidden --ignore .git -g ""'
+	let g:ctrlp_user_command = 'ag -U %s -l --nocolor --hidden --ignore-dir .git --ignore-dir dist --ignore-dir .sass-cache --ignore .netwrhist --ignore .editorconfig -g ""'
 
 	" Skip caching since ag is so fast
 	let g:ctrlp_use_caching = 0
