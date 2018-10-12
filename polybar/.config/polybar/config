@@ -43,10 +43,12 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = DejaVuSans:size=10;0
-font-1 = WunconSiji:pixelsize=10;0
-font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
-font-3 = FontAwesome:size=10;0
-font-4 = fontcustom:size=10;0
+font-1 = DejaVuSansMonoNerdFont:size=10;0
+font-2 = WunconSiji:pixelsize=10;0
+font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+font-4 = FontAwesome5Free:size=10;0
+font-5 = FontAwesome5Brands:size=10;0
+font-6 = fontcustom:size=10;0
 
 modules-left = bspwm xwindow
 modules-center =
@@ -270,7 +272,7 @@ toggle-off-foreground = #66
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label = 
 
 bar-width = 10
 bar-indicator = ▪
@@ -345,10 +347,10 @@ format-underline = #859900
 label = %date% %time%
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
@@ -410,8 +412,8 @@ format-underline = #CB4B16
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 

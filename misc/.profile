@@ -19,6 +19,9 @@ export PATH=$PATH:~/.local/bin/:
 # Avoid errors about the accessibility bus
 export NO_AT_BRIDGE=1
 
+# Fix Java GUI applications
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Source unversioned local customizations if they exist
 if [ -f .profile.local ]; then
 	source .profile.local
