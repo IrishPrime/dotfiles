@@ -39,6 +39,26 @@ function git_prompt
 	echo -n ']'
 end
 
+function python_venv_prompt
+	set_color normal
+	if test -z $VIRTUAL_ENV
+		return
+	end
+
+	if [ $tty = tty ]
+		echo -n '-'
+	else
+		echo -n '─'
+	end
+
+	set_color $argv
+	echo -n '['
+	set_color normal
+	echo -n (basename $VIRTUAL_ENV)
+	set_color $argv
+	echo -n ']'
+end
+
 function fish_prompt
 	and set retc green; or set retc red
 	set_color normal
@@ -102,7 +122,10 @@ function fish_prompt
 	# Git integration
 	git_prompt $retc
 
-	echo
+	# Python Virtual Env
+	python_venv_prompt $retc
+
+	echo # Start the second line
 	set_color normal
 	for job in (jobs)
 		set_color $retc
