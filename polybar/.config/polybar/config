@@ -139,6 +139,138 @@ scroll-down = bspwm-deskprev
 
 enable-ipc = true
 
+[bar/callisto-primary]
+monitor = ${env:MONITOR:eDP-1}
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = DejaVuSansMonoNerdFont:size=10;0
+font-2 = WunconSiji:pixelsize=10;0
+font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = callisto-wlan github backlight volume backlight cpu memory battery temperature date powermenu
+
+tray-position = right
+tray-padding = 2
+# tray-transparent = true
+# tray-background = #0063ff
+
+# wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
+
+[bar/callisto-secondary]
+monitor = ${env:MONITOR:DP-2-1}
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = DejaVuSansMonoNerdFont:size=10;0
+font-2 = WunconSiji:pixelsize=10;0
+font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = filesystem cpu memory date
+
+#tray-position = right
+#tray-padding = 2
+#tray-transparent = true
+#tray-background = #0063ff
+
+# wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
+
+[bar/callisto-tertiary]
+monitor = ${env:MONITOR:DP-2-2}
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = DejaVuSansMonoNerdFont:size=10;0
+font-2 = WunconSiji:pixelsize=10;0
+font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = filesystem cpu memory date
+
+#tray-position = right
+#tray-padding = 2
+#tray-transparent = true
+#tray-background = #0063ff
+
+# wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
@@ -330,6 +462,20 @@ accumulate-stats = true
 label-connected = %local_ip% Up: %upspeed:12% Down: %downspeed:12%
 format-connected-underline = ${colors.nord-green}
 
+[module/callisto-eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3.0
+accumulate-stats = true
+label-connected = %local_ip%: Up: %upspeed% Down: %downspeed%
+
+[module/callisto-wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+accumulate-stats = true
+label-connected = %local_ip%: Up: %upspeed% Down: %downspeed%
+
 [module/date]
 type = internal/date
 
@@ -367,7 +513,7 @@ bar-volume-foreground-0 = ${colors.nord-green}
 bar-volume-foreground-1 = ${colors.nord-yellow}
 bar-volume-foreground-2 = ${colors.nord-red}
 bar-volume-gradient = true
-bar-volume-indicator = ┥
+bar-volume-indicator = ┫
 bar-volume-indicator-font = 2
 bar-volume-indicator-foreground = ${colors.foreground}
 bar-volume-fill = ━
