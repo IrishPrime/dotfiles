@@ -143,7 +143,7 @@ XF86AudioPlay
 	mpc-notification.sh
 
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
-	light -{A,U} 5
+	xbacklight -{inc,dec} 5
 
 XF86Battery
 	battery.sh
