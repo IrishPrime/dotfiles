@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+for MONITOR in $(bspc query -M); do
+	bspc monitor ${MONITOR} --reset-desktops \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '') \
+		$(echo '')
+done
+
+# bspc monitor eDP-1 --rectangle 1920x1080+960+1080
+polybar --reload callisto-primary &
+polybar --reload callisto-secondary &
+polybar --reload callisto-tertiary &

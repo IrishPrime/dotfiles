@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Remove external monitors
+bspc monitor DP-2-1 --remove
+bspc monitor DP-2-2 --remove
+
+# Adopt orphaned nodes
+bspc wm --adopt-orphans
+
+# Restart polybar
+polybar --reload callisto-primary &
