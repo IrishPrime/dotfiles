@@ -1,19 +1,22 @@
 [options]
-resize_grip = false
-scroll_on_output = false
-scroll_on_keystroke = true
-audible_bell = false
-mouse_autohide = true
 allow_bold = true
-dynamic_title = true
-urgent_on_bell = true
+audible_bell = false
+bold_is_bright = true
 clickable_url = true
+cursor_shape = underline
+dynamic_title = true
 font = DejaVu Sans Mono 12
+icon_name = terminal
+mouse_autohide = true
+pseudo_transparency = false
+resize_grip = false
+scroll_on_keystroke = true
+scroll_on_output = false
 scrollback_lines = 1000
 search_wrap = true
 transparency = 0.7
-pseudo_transparency = false
-icon_name = terminal
+transparency = 0.85
+urgent_on_bell = true
 
 # Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
 # Copyright (c) 2016-present Sven Greb <code@svengreb.de>
@@ -22,14 +25,21 @@ icon_name = terminal
 # Repository: https://github.com/arcticicestudio/nord-termite
 # License:    MIT
 
+# $BROWSER is used by default
+#browser = firefox
+
+# set size hints for the window
+#size_hints = false
+
+# emit escape sequences for other keys modified by Control
+#modify_other_keys = false
+
 [colors]
+background = rgba(46, 52, 64, 0.92)
 cursor = #d8dee9
 cursor_foreground = #2e3440
-
 foreground = #d8dee9
 foreground_bold = #d8dee9
-background = rgba(46, 52, 64, 0.92)
-
 highlight = #4c566a
 
 # black
