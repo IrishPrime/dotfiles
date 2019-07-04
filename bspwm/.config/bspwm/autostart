@@ -9,6 +9,8 @@ if ! pgrep picom; then
 	picom --daemon --blur-background --no-vsync
 fi
 
+sleep 0.5
+
 case $(hostnamectl --static) in
 	ireland)
 		polybar --reload ireland-primary &
@@ -18,5 +20,9 @@ case $(hostnamectl --static) in
 	wisp)
 		setxkbmap -option ctrl:nocaps
 		polybar --reload wisp &
+		;;
+	callisto)
+		setxkbmap -option ctrl:nocaps
+		autorandr --force --change
 		;;
 esac
