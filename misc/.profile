@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export SXHKD_SHELL="/bin/zsh"
 export TERMINAL="termite"

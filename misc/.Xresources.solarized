@@ -56,5 +56,4 @@
 *color14:                S_base1
 *color15:                S_base3
 
-rofi.combi-modi:         window,drun,ssh
-rofi.theme:              solarized_alternate
+Xcursor.size:            16
