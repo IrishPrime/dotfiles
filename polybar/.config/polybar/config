@@ -30,11 +30,11 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 overline-size = 2
-overline-color = #f00
+overline-color = #FF0000
 underline-size = 4
-underline-color = #00f
+underline-color = #0000FF
 border-bottom-size = 0
-border-bottom-color = #333
+border-bottom-color = #333333
 
 spacing = 1
 padding-left = 0
@@ -52,102 +52,12 @@ font-6 = fontcustom:size=10;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = backlight volume wisp-network cpu memory battery temperature date powermenu
+modules-right = backlight volume filesystem github wisp-network cpu memory battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
 
 wm-restack = bspwm
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
-
-enable-ipc = true
-
-[bar/ganymede-primary]
-monitor = ${env:MONITOR:DVI-D-0}
-width = 100%
-height = 24
-offset-x = 0
-offset-y = 0
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-overline-size = 2
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
-border-bottom-size = 0
-border-bottom-color = #333
-
-spacing = 1
-padding-left = 0
-padding-right = 2
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = DejaVuSans:size=10;0
-font-1 = WunconSiji:pixelsize=10;0
-font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
-font-3 = FontAwesome:size=10;0
-font-4 = fontcustom:size=10;0
-
-modules-left = bspwm xwindow
-modules-center =
-modules-right = mpd github volume ganymede-network cpu memory temperature date powermenu
-
-tray-position = right
-tray-padding = 2
-# tray-transparent = true
-# tray-background = #0063ff
-
-# wm-restack = bspwm
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
-
-enable-ipc = true
-
-[bar/ganymede-secondary]
-monitor = ${env:MONITOR:HDMI-0}
-width = 100%
-height = 24
-offset-x = 0
-offset-y = 0
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-overline-size = 2
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
-border-bottom-size = 0
-border-bottom-color = #333
-
-spacing = 1
-padding-left = 0
-padding-right = 2
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = DejaVuSans:size=10;0
-font-1 = WunconSiji:pixelsize=10;0
-font-2 = unifont:size=6:weight=heavy:fontformat=truetype;-2
-font-3 = FontAwesome:size=10;0
-font-4 = fontcustom:size=10;0
-
-modules-left = bspwm xwindow
-modules-center =
-modules-right = filesystem
-
-#tray-position = right
-#tray-padding = 2
-#tray-transparent = true
-#tray-background = #0063ff
-
-# wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -181,7 +91,7 @@ mount-1 = /home
 
 bar-used-empty = ─
 bar-used-fill = ━
-bar-used-indicator = ▪
+bar-used-indicator = ┥
 bar-used-width = 10
 label-mounted = %mountpoint%: %percentage_used%%
 format-mounted = <label-mounted> <bar-used>
@@ -275,8 +185,8 @@ format = <label> <bar>
 label = 
 
 bar-width = 10
-bar-indicator = ▪
-bar-indicator-foreground = #ff
+bar-indicator = ┥
+bar-indicator-foreground = #B58900
 bar-indicator-font = 2
 bar-fill = ━
 bar-fill-font = 2
@@ -290,7 +200,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #DC322F
+format-underline = ${colors.alert}
 label = %percentage%%
 
 [module/memory]
@@ -315,20 +225,14 @@ label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
 # 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
 
 ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/ganymede-network]
-type = internal/network
-interface = enp0s31f6
-interval = 3.0
-accumulate-stats = true
-label-connected = %local_ip%: Up: %upspeed% Down: %downspeed%
 
 [module/date]
 type = internal/date
@@ -358,17 +262,17 @@ format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = #55AA55
+bar-volume-foreground-1 = #55AA55
+bar-volume-foreground-2 = #55AA55
+bar-volume-foreground-3 = #55AA55
+bar-volume-foreground-4 = #55AA55
+bar-volume-foreground-5 = #F5A70A
+bar-volume-foreground-6 = #FF5555
 bar-volume-gradient = true
-bar-volume-indicator = ▪
+bar-volume-indicator = ┥
 bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = #ff
+bar-volume-indicator-foreground = #AAAACC
 bar-volume-fill = ━
 bar-volume-fill-font = 2
 bar-volume-empty = ─

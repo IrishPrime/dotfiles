@@ -7,13 +7,8 @@ xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
 
 sleep 0.5
-case $(hostname) in
+case $(hostnamectl --static) in
 	wisp)
 		polybar --reload wisp &
-		;;
-	ganymede)
-		polybar --reload ganymede-primary &
-		polybar --reload ganymede-secondary &
-		numlockx on
 		;;
 esac
