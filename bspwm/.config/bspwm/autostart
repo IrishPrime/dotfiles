@@ -8,6 +8,11 @@ xsetroot -cursor_name left_ptr
 
 sleep 0.5
 case $(hostnamectl --static) in
+	ireland)
+		polybar --reload ireland-primary &
+		numlockx on
+		pasystray &
+		;;
 	wisp)
 		polybar --reload wisp &
 		;;

@@ -17,16 +17,16 @@ bspc config presel_feedback_color        '#222222'
 #          
 for MONITOR in $(bspc query -M); do
 	bspc monitor ${MONITOR} --reset-desktops \
-		$(echo -e '\uf0ac') \
-		$(echo -e '\uf120') \
-		$(echo -e '\uf121') \
-		$(echo -e '\uf086') \
-		$(echo -e '\uf0c5') \
-		$(echo -e '\uf0b1') \
-		$(echo -e '\uf108') \
-		$(echo -e '\uf1fc') \
-		$(echo -e '\uf1c0') \
-		$(echo -e '\uf085')
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e ) \
+		$(echo -e )
 done
 
 # Rules
