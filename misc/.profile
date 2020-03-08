@@ -16,8 +16,6 @@ export VIRTUALIZATION="virt-manager"
 
 export PATH="${PATH}:~/.local/bin/:"
 
-export ZDOTDIR="~/.zsh"
-
 # Avoid errors about the accessibility bus
 export NO_AT_BRIDGE=1
 

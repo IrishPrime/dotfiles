@@ -25,7 +25,7 @@ zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' substitute 1
-zstyle :compinstall filename '/home/irish/.zsh/.zshrc'
+zstyle :compinstall filename '/home/irish/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -47,11 +47,10 @@ fi
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ${ZDOTDIR}/p10k.zsh
+source ~/.zsh/p10k.zsh
 
 # Source alias definitions
-source ${ZDOTDIR}/aliases.zsh
+source ~/.zsh/aliases.zsh
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
