@@ -76,9 +76,5 @@ URxvt*depth:             32
 URxvt*perl-ext-common:   default,matcher
 URxvt*matcher.button:    1
 
-rofi.color-enabled:      true
-rofi.color-window:       S_base03, S_blue
-rofi.color-normal:       S_base03, S_base1, S_base02, S_blue, S_base3
-!rofi.color-active:
-rofi.color-urgent:       S_red
-rofi.terminal:           termite
+rofi.combi-modi:         window,drun,ssh
+rofi.theme:              solarized_alternate

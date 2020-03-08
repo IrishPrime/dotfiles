@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export SXHKD_SHELL="/bin/bash"
+export SXHKD_SHELL="/bin/zsh"
 export TERMINAL="termite"
 export EDITOR="vim"
-export VISUAL="gvim -f"
+export VISUAL="gvim"
 export SUDO_EDITOR="vim"
 export BROWSER="chromium"
 export CALCULATOR="${TERMINAL} -e calc"
@@ -14,7 +14,9 @@ export MAIL_CLIENT="${TERMINAL} -e mutt"
 export MUSIC_PLAYER="google-music.sh"
 export VIRTUALIZATION="virt-manager"
 
-export PATH=$PATH:~/.local/bin/:
+export PATH="${PATH}:~/.local/bin/:"
+
+export ZDOTDIR="~/.zsh"
 
 # Avoid errors about the accessibility bus
 export NO_AT_BRIDGE=1
