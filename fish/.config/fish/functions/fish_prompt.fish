@@ -20,7 +20,7 @@ end
 
 function git_prompt
 	set_color normal
-	set -l branch (git rev-parse --abbrev-ref HEAD ^&-)
+	set -l branch (git rev-parse --is-inside-work-tree 2>/dev/null)
 	if test -z $branch
 		return
 	end
@@ -88,7 +88,7 @@ function fish_prompt
 		set_color cyan
 	end
 
-	echo -n (hostname)
+	echo -n (hostnamectl --static)
 	set_color white
 	#echo -n :(prompt_pwd)
 	echo -n :(pwd|sed "s;$HOME;~;")
