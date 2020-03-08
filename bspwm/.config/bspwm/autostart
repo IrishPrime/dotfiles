@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 nitrogen --restore
 setxkbmap -option ctrl:nocaps
-xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
+
+if ! pgrep xcompmgr; then
+	xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
+fi
 
 sleep 0.5
 case $(hostnamectl --static) in
