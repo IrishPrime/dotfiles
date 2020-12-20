@@ -2,12 +2,12 @@
 " Custom markdown commands and/or settings.
 
 " Maintainer: Michael O'Neill <irish.dot@gmail.com>
-" Version:    2018.02.28
+" Version:    2020.08.19
 
 " Convert CSV formatted data to a Markdown table
 function! s:csv_to_table()
 	" Save cursor position
-	let l:save_cursor = getpos(".")
+	let l:save_cursor = getpos('.')
 
 	" Replace comma separated values with pipes
 	s/,\s*/|/ge
@@ -31,3 +31,7 @@ endfunction
 " Commands
 command! -range=% MDCSVToTable silent <line1>,<line2> call <SID>csv_to_table()
 command! MDRowToHeader silent call <SID>row_to_header()
+
+augroup markdown
+	autocmd BufEnter,BufNew * setlocal spell spelllang=en_us
+augroup end
