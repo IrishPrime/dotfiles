@@ -25,10 +25,12 @@ zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' substitute 1
+zstyle ':completion:*:*:git:*' user-commands bonsai:'trim local branches with removed remotes'
 zstyle :compinstall filename '/home/irish/.zshrc'
 
 autoload -Uz compinit
 compinit
+
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -54,13 +56,17 @@ source ~/.zsh/aliases.zsh
 
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#585858,bold,underline"
+ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
+
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#585858,bold,underline"
-ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
+autoload -Uz bashcompinit
+bashcompinit
+
+complete -C aws_completer aws
