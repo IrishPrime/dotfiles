@@ -49,10 +49,10 @@ super + shift + c
 	bspc node --close
 
 super + {f,s,d}
-	bspc node --state ~{floating,fullscreen,pseudo_tiled}
+	bspc node --state "~{floating,fullscreen,pseudo_tiled}"
 
 super + {x,a,c}
-	bspc node --flag {sticky,private,locked}
+	bspc node --flag "{sticky,private,locked}"
 
 super + {grave,Tab}
 	bspc {desktop,node} --focus last
@@ -84,13 +84,13 @@ super + {_,shift + }{h,j,k,l}
 	bspc node --{focus,swap} {west,south,north,east}
 
 super + {n,p}
-	bspc node --focus {next,prev}.local
+	bspc node --focus {next,prev}.local.!hidden.window
 
 super + ctrl + bracket{left,right}
 	bspc node --to-monitor {next,prev}
 
 super + ctrl + {h,j,k,l}
-	bspc node --presel-dir ~{west,south,north,east}
+	bspc node --presel-dir "~{west,south,north,east}"
 
 super + alt + {h,j,k,l}
 	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
@@ -110,7 +110,7 @@ super + ctrl + {1-9}
 
 # Launchers {{{
 super + space
-	rofi -hide-scrollbar -show drun
+	rofi -width -100 -modi combi -show combi -combi-modi "window,drun,run,ssh"
 
 super + Return
 	$TERMINAL
