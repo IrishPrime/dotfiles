@@ -1,20 +1,3 @@
-[options]
-resize_grip = false
-scroll_on_output = false
-scroll_on_keystroke = true
-audible_bell = false
-mouse_autohide = true
-allow_bold = true
-dynamic_title = true
-urgent_on_bell = true
-clickable_url = true
-font = DejaVu Sans Mono 12
-scrollback_lines = 1000
-search_wrap = true
-transparency = 0.7
-pseudo_transparency = false
-icon_name = terminal
-
 # Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
 # Copyright (c) 2016-present Sven Greb <code@svengreb.de>
 
@@ -28,7 +11,7 @@ cursor_foreground = #2e3440
 
 foreground = #d8dee9
 foreground_bold = #d8dee9
-background = rgba(46, 52, 64, 0.92)
+background = #2e3440
 
 highlight = #4c566a
 

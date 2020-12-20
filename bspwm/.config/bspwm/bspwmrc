@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 bspc config border_width          2
-bspc config window_gap            8
+bspc config window_gap            14
 bspc config split_ratio           0.50
 bspc config borderless_monocle    true
 bspc config focus_follows_pointer true
@@ -9,14 +9,14 @@ bspc config gapless_monocle       true
 bspc config single_monocle        true
 
 # Colors
-bspc config focused_border_color         '#268BD2'
-bspc config presel_feedback_color        '#222222'
+bspc config focused_border_color  '#5E81AC'
+bspc config presel_feedback_color '#4C566A'
 
 # Desktop names
 #          
 for MONITOR in $(bspc query -M); do
 	bspc monitor ${MONITOR} --reset-desktops \
-		$(echo -e ) \
+		$(echo -e ) \
 		$(echo -e ) \
 		$(echo -e ) \
 		$(echo -e ) \
@@ -29,10 +29,5 @@ for MONITOR in $(bspc query -M); do
 done
 
 # Rules
-bspc rule --add crx_gaedmjdfmmahhbjefcbgaolhhanlaolb floating=on # Authy Extension
-bspc rule --add crx_nckgahadagoaajjgafhacjanaoiihapd floating=on # Hangouts Extension
-bspc rule --add Gimp follow=on floating=on
-bspc rule --add libreoffice manage=on state=tiled
-bspc rule --add '*:soffice' manage=on state=tiled
-bspc rule --add mpv floating=on
-bspc rule --add rdesktop manage=on border=off pseudo_tiled=on
+bspc rule --add Chromium:crx_gaedmjdfmmahhbjefcbgaolhhanlaolb state=floating # Authy Extension
+bspc rule --add mpv state=floating

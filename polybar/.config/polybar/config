@@ -1,24 +1,111 @@
 #=====================================================
-#
 #   To learn more about how to configure Polybar
 #   go to https://github.com/jaagr/polybar
 #
 #   The README contains alot of information
-#
 #=====================================================
 
 [colors]
-background = #222222
-background-alt = #444444
-foreground = #FFFFFF
-foreground-alt = #666666
-primary = #268BD2
-secondary = #E60053
-alert = #DC322F
+background = #2E3440
+background-alt = #4C566A
+foreground = #ECEFF4
+foreground-alt = #D8DEE9
+primary = #5E81AC
+secondary = #81A1C1
+alert = #BF616A
+
+# Polar Night (Darkest to dark)
+nord-0 = #2E3440
+nord-1 = #3B4252
+nord-2 = #434C5E
+nord-3 = #4C566A
+# Snow Storm (Light to lightest)
+nord-4 = #D8DEE9
+nord-5 = #E5E9F0
+nord-6 = #ECEFF4
+# Frost (Light green to blue)
+nord-7 = #8FBCBB
+nord-8 = #88C0D0
+nord-9 = #81A1C1
+nord-10 = #5E81AC
+# Aurora
+nord-red = #BF616A
+nord-orange = #D08770
+nord-yellow = #EBCB8B
+nord-green = #A3BE8C
+nord-purple = #B48EAD
 
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[bar/ireland-primary]
+monitor = ${env:MONITOR:DP-0.1}
+width = 100%
+height = 24
+
+background = ${xrdb:background:colors.background}
+foreground = ${xrdb:foreground:colors.foreground}
+
+underline-size = 4
+
+spacing = 0
+padding-left = 0
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = SymbolsNerdFont:size=12;0
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = mpd ireland-network tunnel filesystem cpu memory temperature date powermenu
+
+tray-position = right
+tray-padding = 2
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
+
+[bar/ireland-secondary]
+monitor = ${env:MONITOR:DP-0.8}
+width = 100%
+height = 24
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 2
+overline-color = #f00
+underline-size = 4
+underline-color = #00f
+border-bottom-size = 0
+border-bottom-color = #333
+
+spacing = 0
+padding-left = 0
+padding-right = 1
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = DejaVuSans:size=10;0
+font-1 = SymbolsNerdFont:size=12;0
+
+modules-left = bspwm xwindow
+modules-center =
+modules-right = mpd ireland-network filesystem cpu memory temperature date powermenu
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+enable-ipc = true
 
 [bar/wisp]
 width = 100%
@@ -52,54 +139,12 @@ font-6 = fontcustom:size=10;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = backlight volume filesystem github wisp-network cpu memory battery temperature date powermenu
+modules-right = backlight volume filesystem wisp-network cpu memory battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
 
 wm-restack = bspwm
-
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
-
-enable-ipc = true
-
-[bar/ireland-primary]
-monitor = ${env:MONITOR:DP-0}
-width = 100%
-height = 24
-offset-x = 0
-offset-y = 0
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-overline-size = 2
-overline-color = #f00
-underline-size = 2
-underline-color = #00f
-border-bottom-size = 0
-border-bottom-color = #333
-
-spacing = 1
-padding-left = 0
-padding-right = 2
-module-margin-left = 1
-module-margin-right = 2
-
-font-0 = DejaVuSans:size=10;0
-font-1 = DejaVuSansMonoNerdFont:pixelsize=10;0
-
-modules-left = bspwm xwindow
-modules-center =
-modules-right = mpd github volume ireland-network filesystem cpu memory temperature date powermenu
-
-tray-position = right
-tray-padding = 2
-# tray-transparent = true
-# tray-background = #0063ff
-
-# wm-restack = bspwm
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -131,20 +176,20 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-bar-used-empty = ─
-bar-used-fill = ━
-bar-used-indicator = ┥
-bar-used-width = 10
-label-mounted = %mountpoint%: %percentage_used%%
-format-mounted = <label-mounted> <bar-used>
+fixed-values = true
+
+label-mounted = %mountpoint%: %free% (%percentage_free%%)
+format-mounted = <label-mounted>
 
 label-unmounted = %mountpoint%: NULL
 label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
-ws-icon-default = x
-ws-icon-0 = 
+fuzzy-match = true
+format = <label-state> <label-mode>
+ws-icon-default = ○
+ws-icon-0 = 
 ws-icon-1 = 
 ws-icon-2 = 
 ws-icon-3 = 
@@ -156,8 +201,9 @@ ws-icon-8 = 
 ws-icon-9 = 
 
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-background = ${xrdb:background:colors.background}
+label-focused-foreground = ${xrdb:foreground:colors.foreground}
+label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 
 label-occupied = %name%
@@ -168,7 +214,7 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 label-empty = %name%
-label-empty-foreground = ${colors.foreground-alt}
+label-empty-foreground = ${xrdb:color8:colors.background-alt}
 label-empty-padding = 2
 
 [module/i3]
@@ -203,22 +249,23 @@ type = internal/mpd
 
 format-online = <label-song>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
 
+label-song = %artist% - %title% (%album%)
 label-song-maxlen = 75
 label-song-ellipsis = true
 
-icon-prev = 
-icon-seekb = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-icon-seekf = 
+icon-prev = 玲
+icon-seekb = 丹
+icon-stop = 栗
+icon-play = 契
+icon-pause = 
+icon-next = 怜
+icon-seekf = 
 
-icon-random = 
-icon-repeat = 
+icon-random = 列
+icon-repeat = 凌
 
 toggle-on-foreground = ${colors.primary}
-toggle-off-foreground = #66
+toggle-off-foreground = ${colors.background-alt}
 
 [module/backlight]
 type = internal/xbacklight
@@ -241,16 +288,16 @@ bar-empty-foreground = ${colors.foreground-alt}
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.alert}
+format-prefix-foreground = ${xrdb:color14:colors.nord-7}
+format-underline =  ${xrdb:color14:colors.nord-7}
 label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #2AA198
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color6:colors.nord-8}
+format-underline = ${xrdb:color6:colors.nord-8}
 label = %percentage_used%%
 
 [module/wisp-network]
@@ -259,10 +306,8 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #6C71C4
-format-disconnected-underline = ${self.format-connected-underline}
 
-label-connected = %essid%
+label-connected = %essid% %local_ip% Up: %upspeed:12% Down: %downspeed:12%
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
@@ -280,21 +325,27 @@ type = internal/network
 interface = enp4s0
 interval = 3.0
 accumulate-stats = true
-label-connected = %local_ip%: Up: %upspeed% Down: %downspeed%
+label-connected = %local_ip% Up: %upspeed:12% Down: %downspeed:12%
+
+[module/tunnel]
+type = internal/network
+interface = tun0
+interval = 3.0
+accumulate-stats = true
+label-connected = %local_ip% Up: %upspeed:12% Down: %downspeed:12%
 
 [module/date]
 type = internal/date
-interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = " %a %F"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = %R
+time-alt = %X
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #859900
+format-prefix-foreground = ${xrdb:color4:colors.nord-9}
+format-underline = ${xrdb:color4:colors.nord-9}
 
 label = %date% %time%
 
@@ -307,7 +358,7 @@ label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+label-muted = muted
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55AA55
@@ -357,21 +408,22 @@ animation-charging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
+base-temperature = 20
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #CB4B16
+format-underline = ${xrdb:color4:colors.nord-9}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${xrdb:color4:colors.nord-9}
 
 [module/powermenu]
 type = custom/menu
@@ -397,13 +449,5 @@ menu-2-0 = power off
 menu-2-0-exec = systemctl poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
-
-[module/github]
-type = internal/github
-token = ${file:~/.github_token}
-empty-notifications = false
-interval = 600
-label = %notifications%
-format =  <label>
 
 # vim:ft=dosini
