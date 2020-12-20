@@ -6,10 +6,10 @@
 #=====================================================
 
 [colors]
-background = #2E3440
-background-alt = #4C566A
-foreground = #ECEFF4
-foreground-alt = #D8DEE9
+background = ${xrdb:background}
+background-alt = ${xrdb:background}
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:foreground}
 primary = #5E81AC
 secondary = #81A1C1
 alert = #BF616A
@@ -110,36 +110,24 @@ enable-ipc = true
 [bar/wisp]
 width = 100%
 height = 24
-offset-x = 0
-offset-y = 0
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${xrdb:background:colors.background}
+foreground = ${xrdb:foreground:colors.foreground}
 
-overline-size = 2
-overline-color = #FF0000
 underline-size = 4
-underline-color = #0000FF
-border-bottom-size = 0
-border-bottom-color = #333333
 
-spacing = 1
+spacing = 0
 padding-left = 0
 padding-right = 2
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
 font-0 = DejaVuSans:size=10;0
-font-1 = DejaVuSansMonoNerdFont:size=10;0
-font-2 = WunconSiji:pixelsize=10;0
-font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
-font-4 = FontAwesome5Free:size=10;0
-font-5 = FontAwesome5Brands:size=10;0
-font-6 = fontcustom:size=10;0
+font-1 = SymbolsNerdFont:size=12;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = backlight volume filesystem wisp-network cpu memory battery temperature date powermenu
+modules-right = volume battery filesystem backlight wisp-network tunnel cpu memory temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -180,9 +168,10 @@ fixed-values = true
 
 label-mounted = %mountpoint%: %free% (%percentage_free%%)
 format-mounted = <label-mounted>
+format-mounted-underline = ${colors.nord-orange}
 
 label-unmounted = %mountpoint%: NULL
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = ${colors.alert}
 
 [module/bspwm]
 type = internal/bspwm
@@ -225,8 +214,7 @@ wrapping-scroll = false
 
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-foreground = ${colors.primary}
 
 label-focused = %index%
 label-focused-background = ${module/bspwm.label-focused-background}
@@ -270,16 +258,22 @@ toggle-off-foreground = ${colors.background-alt}
 [module/backlight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = 
+format = <ramp> <label>
+format-underline = ${colors.nord-yellow}
+ramp-foreground = ${colors.nord-yellow}
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
 
 bar-width = 10
-bar-indicator = ┥
-bar-indicator-foreground = #B58900
+bar-indicator = ━
+bar-indicator-foreground = ${colors.nord-yellow}
 bar-indicator-font = 2
 bar-fill = ━
 bar-fill-font = 2
-bar-fill-foreground = #B58900
+bar-fill-foreground = ${colors.nord-yellow}
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
@@ -289,8 +283,7 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${xrdb:color14:colors.nord-7}
-format-underline =  ${xrdb:color14:colors.nord-7}
-label = %percentage%%
+format-underline = ${xrdb:color14:colors.nord-7}
 
 [module/memory]
 type = internal/memory
@@ -298,14 +291,14 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${xrdb:color6:colors.nord-8}
 format-underline = ${xrdb:color6:colors.nord-8}
-label = %percentage_used%%
 
 [module/wisp-network]
 type = internal/network
-interface = wlp2s0
+interface = wlan0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
+format-connected-underline = ${colors.nord-green}
 
 label-connected = %essid% %local_ip% Up: %upspeed:12% Down: %downspeed:12%
 label-disconnected = %ifname% disconnected
@@ -344,34 +337,36 @@ time = %R
 time-alt = %X
 
 format-prefix = 
-format-prefix-foreground = ${xrdb:color4:colors.nord-9}
-format-underline = ${xrdb:color4:colors.nord-9}
+format-prefix-foreground = ${colors.nord-10}
+format-underline = ${colors.nord-10}
 
 label = %date% %time%
 
 [module/volume]
 type = internal/alsa
+mapped = true
 
-format-volume = <label-volume> <bar-volume>
-label-volume = 
-label-volume-foreground = ${root.foreground}
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = ${colors.nord-red}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-0-foreground = ${colors.nord-green}
+ramp-volume-1-foreground = ${colors.nord-yellow}
+ramp-volume-2-foreground = ${colors.nord-red}
+label-volume-foreground = ${colors.foreground}
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = muted
+label-muted = 
+format-muted-foreground = ${colors.alert}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55AA55
-bar-volume-foreground-1 = #55AA55
-bar-volume-foreground-2 = #55AA55
-bar-volume-foreground-3 = #55AA55
-bar-volume-foreground-4 = #55AA55
-bar-volume-foreground-5 = #F5A70A
-bar-volume-foreground-6 = #FF5555
+bar-volume-foreground-0 = ${colors.nord-green}
+bar-volume-foreground-1 = ${colors.nord-yellow}
+bar-volume-foreground-2 = ${colors.nord-red}
 bar-volume-gradient = true
 bar-volume-indicator = ┥
 bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = #AAAACC
+bar-volume-indicator-foreground = ${colors.foreground}
 bar-volume-fill = ━
 bar-volume-fill-font = 2
 bar-volume-empty = ─
@@ -384,26 +379,31 @@ battery = BAT0
 adapter = ADP0
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #268BD2
-
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${colors.nord-red}
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.nord-red}
+animation-discharging-framerate = 1000
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.nord-green}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+animation-charging-foreground = ${colors.nord-green}
+animation-charging-framerate = 500
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.nord-green}
+format-full-underline = ${colors.nord-green}
 
 [module/temperature]
 type = internal/temperature
