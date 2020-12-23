@@ -6,7 +6,7 @@ xsetroot -cursor_name left_ptr
 
 if ! pgrep picom; then
 	# xcompmgr -c -C -f -F -t-5 -l-5 -r4.2 -o.55 &
-	picom --daemon --blur-background
+	picom --daemon --blur-background --no-vsync
 fi
 
 case $(hostnamectl --static) in
