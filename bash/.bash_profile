@@ -6,7 +6,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-setxkbmap -option ctrl:nocaps
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
