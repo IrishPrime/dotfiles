@@ -60,7 +60,7 @@ font-1 = SymbolsNerdFont:size=12;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = mpd ireland-network tunnel filesystem cpu memory temperature date powermenu
+modules-right = mpd filesystem ireland-network tunnel cpu memory temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -100,7 +100,7 @@ font-1 = SymbolsNerdFont:size=12;0
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = mpd ireland-network filesystem cpu memory temperature date powermenu
+modules-right = mpd filesystem ireland-network cpu memory temperature date powermenu
 
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
@@ -236,6 +236,7 @@ label-visible-padding = ${module/bspwm.label-empty-padding}
 type = internal/mpd
 
 format-online = <label-song>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+format-online-underline = ${colors.nord-red}
 
 label-song = %artist% - %title% (%album%)
 label-song-maxlen = 75
@@ -253,7 +254,7 @@ icon-random = 列
 icon-repeat = 凌
 
 toggle-on-foreground = ${colors.primary}
-toggle-off-foreground = ${colors.background-alt}
+toggle-off-foreground = ${xrdb:color8:colors.background-alt}
 
 [module/backlight]
 type = internal/xbacklight
@@ -319,6 +320,7 @@ interface = enp4s0
 interval = 3.0
 accumulate-stats = true
 label-connected = %local_ip% Up: %upspeed:12% Down: %downspeed:12%
+format-connected-underline = ${colors.nord-green}
 
 [module/tunnel]
 type = internal/network
@@ -326,6 +328,7 @@ interface = tun0
 interval = 3.0
 accumulate-stats = true
 label-connected = %local_ip% Up: %upspeed:12% Down: %downspeed:12%
+format-connected-underline = ${colors.nord-green}
 
 [module/date]
 type = internal/date
@@ -427,12 +430,13 @@ ramp-foreground = ${xrdb:color4:colors.nord-9}
 
 [module/powermenu]
 type = custom/menu
+format-underline = ${colors.alert}
 
-label-open =  power
+label-open = 
 label-open-foreground = ${colors.alert}
-label-close =  cancel
+label-close = 
 label-close-foreground = ${colors.alert}
-label-separator = |
+label-separator = ┃
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
