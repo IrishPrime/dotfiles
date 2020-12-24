@@ -34,7 +34,7 @@ function git_prompt
 	set_color $argv
 	echo -n '['
 	set_color normal
-	__fish_git_prompt | sed "s;\ (\(.*\));\1;"
+	fish_git_prompt | sed "s;\ (\(.*\));\1;"
 	set_color $argv
 	echo -n ']'
 end

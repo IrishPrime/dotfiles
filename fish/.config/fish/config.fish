@@ -29,3 +29,4 @@ set -U fish_greeting ""
 set -U fish_user_paths ~/.local/bin
 
 eval (dircolors -c ~/.dir_colors | sed 's/>&\/dev\/null$//')
+fish_ssh_agent
