@@ -169,7 +169,7 @@ font-3 = unifont:size=6:weight=heavy:fontformat=truetype;-2
 
 modules-left = bspwm xwindow
 modules-center =
-modules-right = callisto-wlan github backlight volume backlight cpu memory battery temperature date powermenu
+modules-right = callisto-wlan github volume memory cpu temperature battery extra-battery date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -553,6 +553,33 @@ animation-charging-framerate = 500
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.nord-green}
 format-full-underline = ${colors.nord-green}
+
+[module/extra-battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #268BD2
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
