@@ -178,6 +178,9 @@ XF86Launch9
 XF86Favorites
 	$VIRTUALIZATION
 
+XF86Display
+	autorandr --force --change
+
 super + Print
 	scrot '%Y-%m-%d_%H%M%S_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
 # }}}
